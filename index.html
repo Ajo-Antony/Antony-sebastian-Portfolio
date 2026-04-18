@@ -515,9 +515,7 @@
         
         <!-- Contact Form -->
         <div style="flex: 1; min-width: 300px; width: 100%;">
-          <script>var submitted=false;</script>
-          <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="if(submitted){alert('Your message has been sent successfully!');}"></iframe>
-          <form action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSfnmVPL1QccPbWRYcFLxyer5R2bAUPnZAVSer0A5USX1K8-cA/formResponse" method="POST" target="hidden_iframe" onsubmit="submitted=true;" style="display: flex; flex-direction: column; gap: 20px; background: var(--dark2); padding: 40px; border-radius: 16px; border: 1px solid var(--border); text-align: left; backdrop-filter: blur(10px);">
+          <form id="contact-form" style="display: flex; flex-direction: column; gap: 20px; background: var(--dark2); padding: 40px; border-radius: 16px; border: 1px solid var(--border); text-align: left; backdrop-filter: blur(10px);">
             <div style="display: flex; flex-direction: column; gap: 8px;">
               <label style="font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gold);">Name</label>
               <input type="text" name="entry.2005620554" placeholder="Your Name" required style="background: transparent; border: none; border-bottom: 1px solid var(--border); color: var(--text); padding: 8px 0; font-family: 'Inter', sans-serif; font-size: 14px; outline: none; transition: border-color 0.3s;" onfocus="this.style.borderColor='var(--gold)'" onblur="this.style.borderColor='var(--border)'">
@@ -536,6 +534,32 @@
             </div>
             <button type="submit" class="btn-primary" style="margin-top: 16px; align-self: flex-start; padding: 14px 40px;">Send Message</button>
           </form>
+
+          <script>
+            document.getElementById('contact-form').addEventListener('submit', function(e) {
+              e.preventDefault();
+              const form = e.target;
+              const data = new FormData(form);
+              const action = 'https://docs.google.com/forms/u/0/d/e/1FAIpQLSfnmVPL1QccPbWRYcFLxyer5R2bAUPnZAVSer0A5USX1K8-cA/formResponse';
+              
+              const btn = form.querySelector('button[type="submit"]');
+              const originalText = btn.innerText;
+              btn.innerText = 'Sending...';
+              
+              fetch(action, {
+                method: 'POST',
+                mode: 'no-cors',
+                body: data
+              }).then(() => {
+                alert('Your message has been sent successfully!');
+                form.reset();
+                btn.innerText = originalText;
+              }).catch(error => {
+                alert('There was an error sending your message. Please try again.');
+                btn.innerText = originalText;
+              });
+            });
+          </script>
         </div>
         
       </div>
