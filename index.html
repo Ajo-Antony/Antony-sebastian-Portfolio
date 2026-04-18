@@ -515,20 +515,26 @@
         
         <!-- Contact Form -->
         <div style="flex: 1; min-width: 300px; width: 100%;">
-          <form style="display: flex; flex-direction: column; gap: 20px; background: var(--dark2); padding: 40px; border-radius: 16px; border: 1px solid var(--border); text-align: left; backdrop-filter: blur(10px);">
+          <script>var submitted=false;</script>
+          <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="if(submitted){alert('Your message has been sent successfully!');}"></iframe>
+          <form action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSfnmVPL1QccPbWRYcFLxyer5R2bAUPnZAVSer0A5USX1K8-cA/formResponse" method="POST" target="hidden_iframe" onsubmit="submitted=true;" style="display: flex; flex-direction: column; gap: 20px; background: var(--dark2); padding: 40px; border-radius: 16px; border: 1px solid var(--border); text-align: left; backdrop-filter: blur(10px);">
             <div style="display: flex; flex-direction: column; gap: 8px;">
               <label style="font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gold);">Name</label>
-              <input type="text" placeholder="Your Name" style="background: transparent; border: none; border-bottom: 1px solid var(--border); color: var(--text); padding: 8px 0; font-family: 'Inter', sans-serif; font-size: 14px; outline: none; transition: border-color 0.3s;" onfocus="this.style.borderColor='var(--gold)'" onblur="this.style.borderColor='var(--border)'">
+              <input type="text" name="entry.2005620554" placeholder="Your Name" required style="background: transparent; border: none; border-bottom: 1px solid var(--border); color: var(--text); padding: 8px 0; font-family: 'Inter', sans-serif; font-size: 14px; outline: none; transition: border-color 0.3s;" onfocus="this.style.borderColor='var(--gold)'" onblur="this.style.borderColor='var(--border)'">
             </div>
             <div style="display: flex; flex-direction: column; gap: 8px;">
               <label style="font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gold);">Email</label>
-              <input type="email" placeholder="you@example.com" style="background: transparent; border: none; border-bottom: 1px solid var(--border); color: var(--text); padding: 8px 0; font-family: 'Inter', sans-serif; font-size: 14px; outline: none; transition: border-color 0.3s;" onfocus="this.style.borderColor='var(--gold)'" onblur="this.style.borderColor='var(--border)'">
+              <input type="email" name="entry.1045781291" placeholder="you@example.com" required style="background: transparent; border: none; border-bottom: 1px solid var(--border); color: var(--text); padding: 8px 0; font-family: 'Inter', sans-serif; font-size: 14px; outline: none; transition: border-color 0.3s;" onfocus="this.style.borderColor='var(--gold)'" onblur="this.style.borderColor='var(--border)'">
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 8px;">
+              <label style="font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gold);">Phone Number</label>
+              <input type="text" name="entry.1166974658" placeholder="+91 0000000000" required style="background: transparent; border: none; border-bottom: 1px solid var(--border); color: var(--text); padding: 8px 0; font-family: 'Inter', sans-serif; font-size: 14px; outline: none; transition: border-color 0.3s;" onfocus="this.style.borderColor='var(--gold)'" onblur="this.style.borderColor='var(--border)'">
             </div>
             <div style="display: flex; flex-direction: column; gap: 8px;">
               <label style="font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gold);">Message</label>
-              <textarea placeholder="How can we collaborate?" rows="3" style="background: transparent; border: none; border-bottom: 1px solid var(--border); color: var(--text); padding: 8px 0; font-family: 'Inter', sans-serif; font-size: 14px; outline: none; resize: none; transition: border-color 0.3s;" onfocus="this.style.borderColor='var(--gold)'" onblur="this.style.borderColor='var(--border)'"></textarea>
+              <textarea name="entry.1065046570" placeholder="How can we collaborate?" rows="3" required style="background: transparent; border: none; border-bottom: 1px solid var(--border); color: var(--text); padding: 8px 0; font-family: 'Inter', sans-serif; font-size: 14px; outline: none; resize: none; transition: border-color 0.3s;" onfocus="this.style.borderColor='var(--gold)'" onblur="this.style.borderColor='var(--border)'"></textarea>
             </div>
-            <button type="button" class="btn-primary" style="margin-top: 16px; align-self: flex-start; padding: 14px 40px;">Send Message</button>
+            <button type="submit" class="btn-primary" style="margin-top: 16px; align-self: flex-start; padding: 14px 40px;">Send Message</button>
           </form>
         </div>
         
