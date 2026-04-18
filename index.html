@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Antony Sebastian — AI & MLOps Portfolio</title>
   <link rel="stylesheet" href="./style.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 
 <body>
@@ -518,46 +519,58 @@
           <form id="contact-form" style="display: flex; flex-direction: column; gap: 20px; background: var(--dark2); padding: 40px; border-radius: 16px; border: 1px solid var(--border); text-align: left; backdrop-filter: blur(10px);">
             <div style="display: flex; flex-direction: column; gap: 8px;">
               <label style="font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gold);">Name</label>
-              <input type="text" name="entry.2005620554" placeholder="Your Name" required style="background: transparent; border: none; border-bottom: 1px solid var(--border); color: var(--text); padding: 8px 0; font-family: 'Inter', sans-serif; font-size: 14px; outline: none; transition: border-color 0.3s;" onfocus="this.style.borderColor='var(--gold)'" onblur="this.style.borderColor='var(--border)'">
+              <input type="text" name="name" placeholder="Your Name" required style="background: transparent; border: none; border-bottom: 1px solid var(--border); color: var(--text); padding: 8px 0; font-family: 'Inter', sans-serif; font-size: 14px; outline: none; transition: border-color 0.3s;" onfocus="this.style.borderColor='var(--gold)'" onblur="this.style.borderColor='var(--border)'">
             </div>
             <div style="display: flex; flex-direction: column; gap: 8px;">
               <label style="font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gold);">Email</label>
-              <input type="email" name="entry.1045781291" placeholder="you@example.com" required style="background: transparent; border: none; border-bottom: 1px solid var(--border); color: var(--text); padding: 8px 0; font-family: 'Inter', sans-serif; font-size: 14px; outline: none; transition: border-color 0.3s;" onfocus="this.style.borderColor='var(--gold)'" onblur="this.style.borderColor='var(--border)'">
+              <input type="email" name="email" placeholder="you@example.com" required style="background: transparent; border: none; border-bottom: 1px solid var(--border); color: var(--text); padding: 8px 0; font-family: 'Inter', sans-serif; font-size: 14px; outline: none; transition: border-color 0.3s;" onfocus="this.style.borderColor='var(--gold)'" onblur="this.style.borderColor='var(--border)'">
             </div>
             <div style="display: flex; flex-direction: column; gap: 8px;">
               <label style="font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gold);">Phone Number</label>
-              <input type="text" name="entry.1166974658" placeholder="+91 0000000000" required style="background: transparent; border: none; border-bottom: 1px solid var(--border); color: var(--text); padding: 8px 0; font-family: 'Inter', sans-serif; font-size: 14px; outline: none; transition: border-color 0.3s;" onfocus="this.style.borderColor='var(--gold)'" onblur="this.style.borderColor='var(--border)'">
+              <input type="text" name="phone" placeholder="+91 0000000000" required style="background: transparent; border: none; border-bottom: 1px solid var(--border); color: var(--text); padding: 8px 0; font-family: 'Inter', sans-serif; font-size: 14px; outline: none; transition: border-color 0.3s;" onfocus="this.style.borderColor='var(--gold)'" onblur="this.style.borderColor='var(--border)'">
             </div>
             <div style="display: flex; flex-direction: column; gap: 8px;">
               <label style="font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gold);">Message</label>
-              <textarea name="entry.1065046570" placeholder="How can we collaborate?" rows="3" required style="background: transparent; border: none; border-bottom: 1px solid var(--border); color: var(--text); padding: 8px 0; font-family: 'Inter', sans-serif; font-size: 14px; outline: none; resize: none; transition: border-color 0.3s;" onfocus="this.style.borderColor='var(--gold)'" onblur="this.style.borderColor='var(--border)'"></textarea>
+              <textarea name="message" placeholder="How can we collaborate?" rows="3" required style="background: transparent; border: none; border-bottom: 1px solid var(--border); color: var(--text); padding: 8px 0; font-family: 'Inter', sans-serif; font-size: 14px; outline: none; resize: none; transition: border-color 0.3s;" onfocus="this.style.borderColor='var(--gold)'" onblur="this.style.borderColor='var(--border)'"></textarea>
             </div>
             <button type="submit" class="btn-primary" style="margin-top: 16px; align-self: flex-start; padding: 14px 40px;">Send Message</button>
           </form>
 
           <script>
-            document.getElementById('contact-form').addEventListener('submit', function(e) {
+            // 1. Add your Supabase project URL and anon key here
+            const supabaseUrl = 'https://nkyddfirisydpcnnsztx.supabase.co';
+            const supabaseKey = 'sb_publishable_twnKbFOb8IEzgD3J77EkNA_EUGRbSzC';
+            const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
+
+            document.getElementById('contact-form').addEventListener('submit', async function(e) {
               e.preventDefault();
               const form = e.target;
-              const data = new FormData(form);
-              const action = 'https://docs.google.com/forms/u/0/d/e/1FAIpQLSfnmVPL1QccPbWRYcFLxyer5R2bAUPnZAVSer0A5USX1K8-cA/formResponse';
               
               const btn = form.querySelector('button[type="submit"]');
               const originalText = btn.innerText;
               btn.innerText = 'Sending...';
               
-              fetch(action, {
-                method: 'POST',
-                mode: 'no-cors',
-                body: data
-              }).then(() => {
-                alert('Your message has been sent successfully!');
+              // Get values from form
+              const name = form.querySelector('[name="name"]').value;
+              const email = form.querySelector('[name="email"]').value;
+              const phone = form.querySelector('[name="phone"]').value;
+              const message = form.querySelector('[name="message"]').value;
+              
+              // Insert into the "contacts" table inside Supabase
+              const { data, error } = await supabase
+                .from('contacts')
+                .insert([
+                  { name: name, email: email, phone: phone, message: message }
+                ]);
+
+              if (error) {
+                alert('Database Error: ' + error.message);
+              } else {
+                alert('Your message has been saved to your Supabase Database successfully!');
                 form.reset();
-                btn.innerText = originalText;
-              }).catch(error => {
-                alert('There was an error sending your message. Please try again.');
-                btn.innerText = originalText;
-              });
+              }
+              
+              btn.innerText = originalText;
             });
           </script>
         </div>
