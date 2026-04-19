@@ -28,43 +28,63 @@
   </nav>
 
   <!-- HERO -->
-  <section id="hero">
-    <div class="hero-line"></div>
-    <div class="hero-sub" style="letter-spacing: 0.15em;">Generative AI · Machine Learning · MLOps · Backend Engineering</div>
-    <h1 class="hero-title" style="font-size: clamp(48px, 6vw, 90px); line-height: 1.1; margin-bottom: 24px;">
-      <span class="line"><span class="word">Designing</span></span>
-      <span class="line"><span class="word">Scalable <em style="background: linear-gradient(90deg, var(--gold), var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; color: transparent;">AI Systems</em></span></span>
-      <span class="line"><span class="word">That Solve Real-World Problems.</span></span>
-    </h1>
-    <p class="hero-desc" style="max-width: 600px; margin-bottom: 40px; font-size: 16px;">
-      I’m Antony Sebastian — an MCA graduate specializing in Generative AI, Machine Learning, and production-ready AI systems. <br><br>
-      I build intelligent applications that scale, automate, and deliver real impact using modern AI stacks and cloud platforms.
-    </p>
-    <div class="hero-cta">
-      <button class="btn-primary" onclick="document.getElementById('work').scrollIntoView({behavior:'smooth'})">View
-        Projects</button>
-      <a href="#contact" class="btn-link">Let's talk</a>
+  <section id="hero"
+    style="display: flex; align-items: center; justify-content: space-between; gap: 40px; flex-wrap: wrap;">
+    <div style="flex: 1.2; min-width: 300px;">
+      <div class="hero-line"></div>
+      <div class="hero-sub" style="letter-spacing: 0.15em;">Generative AI · Machine Learning · MLOps · Backend
+        Engineering</div>
+      <h1 class="hero-title" style="font-size: clamp(48px, 6vw, 90px); line-height: 1.1; margin-bottom: 24px;">
+        <span class="line"><span class="word">Designing</span></span>
+        <span class="line"><span class="word">Scalable <em
+              style="background: linear-gradient(90deg, var(--gold), var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; color: transparent;">AI
+              Systems</em></span></span>
+        <span class="line"><span class="word">That Solve Real-World Problems.</span></span>
+      </h1>
+      <p class="hero-desc" style="max-width: 600px; margin-bottom: 40px; font-size: 16px;">
+        I’m Antony Sebastian — an MCA graduate specializing in Generative AI, Machine Learning, and production-ready AI
+        systems. <br><br>
+        I build intelligent applications that scale, automate, and deliver real impact using modern AI stacks and cloud
+        platforms.
+      </p>
+      <div class="hero-cta">
+        <button class="btn-primary" onclick="document.getElementById('work').scrollIntoView({behavior:'smooth'})">View
+          Projects</button>
+        <a href="#contact" class="btn-link">Let's talk</a>
+      </div>
+      <div class="hero-scroll" style="position: relative; margin-top: 60px;">
+        <div class="scroll-line"></div>
+        <span>Scroll</span>
+      </div>
     </div>
-    <div class="hero-scroll">
-      <div class="scroll-line"></div>
-      <span>Scroll</span>
+    <div class="hero-image-container reveal"
+      style="flex: 0.8; min-width: 300px; display: flex; justify-content: center; position: relative;">
+      <div
+        style="position: absolute; inset: -20px; border-radius: 50%; background: radial-gradient(circle, rgba(0,242,254,0.1), transparent 70%); z-index: -1;">
+      </div>
+      <img src="./assets/profile.png" alt="Antony Sebastian"
+        style="width: 100%; max-width: 400px; border-radius: 20px; object-fit: cover; aspect-ratio: 4/5; border: 1px solid var(--border); box-shadow: 0 20px 40px rgba(0,0,0,0.5);">
     </div>
   </section>
 
   <!-- ABOUT -->
   <section id="about">
-    <div class="about-img reveal-left">
-      <div class="about-img-inner">AS</div>
+    <div class="about-img reveal-left"
+      style="padding: 0; overflow: hidden; display: flex; justify-content: center; align-items: center;">
+      <img src="./assets/about.png" alt="About Me" style="width: 100%; height: 100%; object-fit: cover;">
     </div>
     <div class="reveal-right">
       <div class="about-tag">Professional Summary</div>
       <div class="gold-rule"></div>
       <h2 class="about-heading">Deploying AI<br>with <em>precision</em></h2>
       <p class="about-text">
-        I specialize in building end-to-end AI systems — from data processing and model development to deployment, monitoring, and optimization.
+        I specialize in building end-to-end AI systems — from data processing and model development to deployment,
+        monitoring, and optimization.
       </p>
       <p class="about-text">
-        My expertise spans Generative AI, Machine Learning, and MLOps, with hands-on experience in designing scalable architectures using Python, REST APIs, and cloud platforms. I have worked extensively with Large Language Models, prompt engineering, Retrieval-Augmented Generation (RAG), and vector databases.
+        My expertise spans Generative AI, Machine Learning, and MLOps, with hands-on experience in designing scalable
+        architectures using Python, REST APIs, and cloud platforms. I have worked extensively with Large Language
+        Models, prompt engineering, Retrieval-Augmented Generation (RAG), and vector databases.
       </p>
       <ul style="color: var(--muted); margin-bottom: 20px; font-size: 15px; margin-left: 20px; line-height: 1.8;">
         <li>Production-ready AI systems</li>
@@ -151,7 +171,7 @@
           <div class="skill-icon" style="font-size: 32px; margin-bottom: 16px;">Wb / Ui</div>
           <div class="exp-title" style="font-size: 28px;">Full-Stack Development</div>
           <div class="exp-desc" style="margin-top: 16px;">
-             <ul style="margin-left: 20px;">
+            <ul style="margin-left: 20px;">
               <li>Responsive web applications</li>
               <li>Portfolio websites</li>
               <li>API-based applications</li>
@@ -195,73 +215,65 @@
     <div class="projects-grid">
       <!-- Project 1 -->
       <div class="project-card reveal delay-1">
-        <div class="project-bg"
-          style="background-image: url('C:/Users/hp/.gemini/antigravity/brain/b5031912-611b-41bc-80ef-25d73f9b86d9/project_dashboard_1775931445043.png');">
+        <div class="project-image-container">
+          <img src="./assets/project1.png" alt="SmartHire" class="project-bg">
         </div>
-        <div class="project-pattern"></div>
-        <div class="project-label">SmartHire (GenAI)</div>
         <div class="project-info">
           <div class="project-num">01 / 04</div>
           <div class="project-name">SmartHire platform</div>
-          <div class="project-type" style="margin-bottom: 8px;">Python · Streamlit · Cohere Command-R+</div>
-          <div style="font-size: 11px; line-height: 1.6; color: var(--muted);">
-            <div><strong>Key Features:</strong> AI parsing, Auto-resume scanning</div>
-            <div><strong>Tech Stack:</strong> Python, Streamlit, Cohere API</div>
+          <div class="project-type">Python · Streamlit · Cohere Command-R+</div>
+          <div style="font-size: 13px; line-height: 1.8; color: var(--muted);">
+            <div style="margin-bottom: 4px;"><strong>Key Features:</strong> AI parsing, Auto-resume scanning</div>
+            <div style="margin-bottom: 4px;"><strong>Tech Stack:</strong> Python, Streamlit, Cohere API</div>
             <div><strong>Impact:</strong> Automated recruitment workflows</div>
           </div>
         </div>
       </div>
       <!-- Project 2 -->
       <div class="project-card reveal delay-2">
-        <div class="project-bg"
-          style="background-image: url('C:/Users/hp/.gemini/antigravity/brain/b5031912-611b-41bc-80ef-25d73f9b86d9/project_mobile_1775931459538.png');">
+        <div class="project-image-container">
+          <img src="./assets/project2.png" alt="CareGuides ML" class="project-bg">
         </div>
-        <div class="project-pattern"></div>
-        <div class="project-label">CareGuides ML</div>
         <div class="project-info">
           <div class="project-num">02 / 04</div>
           <div class="project-name">CareGuides ML</div>
-          <div class="project-type" style="margin-bottom: 8px;">ASD Prediction Model · MLOps Pipeline</div>
-          <div style="font-size: 11px; line-height: 1.6; color: var(--muted);">
-            <div><strong>Key Features:</strong> ML diagnostic checks, API endpoints</div>
-            <div><strong>Tech Stack:</strong> Python, Flask, Scikit-Learn</div>
+          <div class="project-type">ASD Prediction Model · MLOps Pipeline</div>
+          <div style="font-size: 13px; line-height: 1.8; color: var(--muted);">
+            <div style="margin-bottom: 4px;"><strong>Key Features:</strong> ML diagnostic checks, API endpoints</div>
+            <div style="margin-bottom: 4px;"><strong>Tech Stack:</strong> Python, Flask, Scikit-Learn</div>
             <div><strong>Impact:</strong> Early detection efficiency</div>
           </div>
         </div>
       </div>
       <!-- Project 3 -->
       <div class="project-card reveal delay-3">
-        <div class="project-bg"
-          style="background-image: url('C:/Users/hp/.gemini/antigravity/brain/b5031912-611b-41bc-80ef-25d73f9b86d9/hero_graphic_1775931420365.png');">
+        <div class="project-image-container">
+          <img src="./assets/project3.png" alt="RizzBot AI" class="project-bg">
         </div>
-        <div class="project-pattern"></div>
-        <div class="project-label">RizzBot AI</div>
         <div class="project-info">
           <div class="project-num">03 / 04</div>
           <div class="project-name">RizzBot Chatbot</div>
-          <div class="project-type" style="margin-bottom: 8px;">Real-Time Flask App · Prompt Engineering</div>
-          <div style="font-size: 11px; line-height: 1.6; color: var(--muted);">
-            <div><strong>Key Features:</strong> Prompt engineering, Real-time query processing</div>
-            <div><strong>Tech Stack:</strong> Python, Flask, Cohere API, JS</div>
+          <div class="project-type">Real-Time Flask App · Prompt Engineering</div>
+          <div style="font-size: 13px; line-height: 1.8; color: var(--muted);">
+            <div style="margin-bottom: 4px;"><strong>Key Features:</strong> Prompt engineering, Real-time query
+              processing</div>
+            <div style="margin-bottom: 4px;"><strong>Tech Stack:</strong> Python, Flask, Cohere API, JS</div>
             <div><strong>Impact:</strong> Interactive and engaging user solutions</div>
           </div>
         </div>
       </div>
       <!-- Project 4 -->
       <div class="project-card reveal delay-4">
-        <!-- Reusing dashboard bg for 4th project -->
-        <div class="project-bg"
-          style="background-image: url('C:/Users/hp/.gemini/antigravity/brain/b5031912-611b-41bc-80ef-25d73f9b86d9/project_dashboard_1775931445043.png'); filter: hue-rotate(180deg);">
+        <div class="project-image-container">
+          <img src="./assets/project4.png" alt="Ezy Parking" class="project-bg">
         </div>
-        <div class="project-pattern"></div>
-        <div class="project-label">Ezy Parking</div>
         <div class="project-info">
           <div class="project-num">04 / 04</div>
           <div class="project-name">Ezy Parking</div>
-          <div class="project-type" style="margin-bottom: 8px;">Full-stack Management System · MySQL</div>
-          <div style="font-size: 11px; line-height: 1.6; color: var(--muted);">
-            <div><strong>Key Features:</strong> DB management, Live tracking API</div>
-            <div><strong>Tech Stack:</strong> HTML, CSS, JavaScript, MySQL</div>
+          <div class="project-type">Full-stack Management System · MySQL</div>
+          <div style="font-size: 13px; line-height: 1.8; color: var(--muted);">
+            <div style="margin-bottom: 4px;"><strong>Key Features:</strong> DB management, Live tracking API</div>
+            <div style="margin-bottom: 4px;"><strong>Tech Stack:</strong> HTML, CSS, JavaScript, MySQL</div>
             <div><strong>Impact:</strong> Automated parking workflows</div>
           </div>
         </div>
@@ -277,7 +289,8 @@
         <h2 class="section-title">Professional<br><em>Experience</em></h2>
         <p style="margin-top: 16px; color: var(--muted); max-width: 600px; font-size: 15px; line-height: 1.8;">
           Focused on real-world problem solving, backend development, and system optimization.<br><br>
-          Hands-on experience in: <strong>API development • Database systems • Secure coding practices • Performance optimization</strong>
+          Hands-on experience in: <strong>API development • Database systems • Secure coding practices • Performance
+            optimization</strong>
         </p>
       </div>
     </div>
@@ -436,33 +449,39 @@
     <div style="display: flex; flex-wrap: wrap; gap: 12px; margin-top: 40px;">
       <!-- Languages -->
       <div class="exp-item reveal delay-1" style="flex: 1 1 300px;">
-        <div style="font-family: 'Outfit', sans-serif; font-size: 20px; color: var(--gold); margin-bottom: 12px;">Languages</div>
+        <div style="font-family: 'Outfit', sans-serif; font-size: 20px; color: var(--gold); margin-bottom: 12px;">
+          Languages</div>
         <div style="color: var(--muted); font-size: 14px;">Python, JavaScript, SQL</div>
       </div>
       <!-- Frameworks -->
       <div class="exp-item reveal delay-2" style="flex: 1 1 300px;">
-        <div style="font-family: 'Outfit', sans-serif; font-size: 20px; color: var(--accent); margin-bottom: 12px;">Frameworks & Tools</div>
+        <div style="font-family: 'Outfit', sans-serif; font-size: 20px; color: var(--accent); margin-bottom: 12px;">
+          Frameworks & Tools</div>
         <div style="color: var(--muted); font-size: 14px;">Flask, FastAPI, Streamlit</div>
       </div>
       <!-- AI & ML -->
       <div class="exp-item reveal delay-3" style="flex: 1 1 300px;">
-        <div style="font-family: 'Outfit', sans-serif; font-size: 20px; color: var(--gold); margin-bottom: 12px;">AI & ML</div>
+        <div style="font-family: 'Outfit', sans-serif; font-size: 20px; color: var(--gold); margin-bottom: 12px;">AI &
+          ML</div>
         <div style="color: var(--muted); font-size: 14px;">Cohere API, NLP, RAG, LLM Applications</div>
       </div>
       <!-- Cloud & DB -->
       <div class="exp-item reveal delay-4" style="flex: 1 1 300px;">
-        <div style="font-family: 'Outfit', sans-serif; font-size: 20px; color: var(--accent); margin-bottom: 12px;">Cloud & Databases</div>
+        <div style="font-family: 'Outfit', sans-serif; font-size: 20px; color: var(--accent); margin-bottom: 12px;">
+          Cloud & Databases</div>
         <div style="color: var(--muted); font-size: 14px;">Azure, Google Vertex AI, MySQL</div>
       </div>
       <!-- Other -->
       <div class="exp-item reveal delay-1" style="flex: 1 1 100%;">
-        <div style="font-family: 'Outfit', sans-serif; font-size: 20px; color: var(--text); margin-bottom: 12px;">Tools & Concepts</div>
-        <div style="color: var(--muted); font-size: 14px;">Git, GitHub, Postman, REST APIs, CI/CD, MLOps, System Design</div>
+        <div style="font-family: 'Outfit', sans-serif; font-size: 20px; color: var(--text); margin-bottom: 12px;">Tools
+          & Concepts</div>
+        <div style="color: var(--muted); font-size: 14px;">Git, GitHub, Postman, REST APIs, CI/CD, MLOps, System Design
+        </div>
       </div>
     </div>
   </section>
 
-<!-- ADDITIONAL -->
+  <!-- ADDITIONAL -->
   <section id="additional" style="padding-top: 60px; padding-bottom: 40px;">
     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px;">
       <div class="exp-item reveal delay-1">
@@ -475,7 +494,9 @@
       </div>
       <div class="exp-item reveal delay-2">
         <h3 style="font-family: 'Outfit', sans-serif; font-size: 24px; margin-bottom: 16px;">📚 Continuous Learning</h3>
-        <p style="color: var(--gold); font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px;">Currently exploring:</p>
+        <p
+          style="color: var(--gold); font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px;">
+          Currently exploring:</p>
         <ul style="margin-left: 20px; color: var(--muted); font-size: 14px; line-height: 1.8;">
           <li>Advanced MLOps pipelines</li>
           <li>Kubernetes for ML systems</li>
@@ -505,35 +526,55 @@
         Open to: AI Engineer Roles • MLOps Roles • Backend Developer Roles • Freelance AI Projects<br>
       </p>
 
-      <div style="display: flex; flex-wrap: wrap; gap: 60px; justify-content: center; align-items: stretch; max-width: 1000px; margin: 0 auto; margin-top: 40px;">
-        
+      <div
+        style="display: flex; flex-wrap: wrap; gap: 60px; justify-content: center; align-items: stretch; max-width: 1000px; margin: 0 auto; margin-top: 40px;">
+
         <!-- Contact Links -->
-        <div class="contact-links" style="flex: 1; min-width: 300px; align-items: flex-start; text-align: left; justify-content: center;">
-          <a href="mailto:ajoantony19@gmail.com" class="contact-email" style="font-size: clamp(20px, 3vw, 28px);">ajoantony19@gmail.com</a>
+        <div class="contact-links"
+          style="flex: 1; min-width: 300px; align-items: flex-start; text-align: left; justify-content: center;">
+          <a href="mailto:ajoantony19@gmail.com" class="contact-email"
+            style="font-size: clamp(20px, 3vw, 28px);">ajoantony19@gmail.com</a>
           <a href="tel:+919496940988" class="contact-phone" style="font-size: 16px; margin: 12px 0;">+91 9496940988</a>
-          <a href="https://linkedin.com/in/antony-sebastian-363151236" class="contact-linkedin" target="_blank" style="font-size: 16px;">LinkedIn | GitHub</a>
+          <a href="https://linkedin.com/in/antony-sebastian-363151236" class="contact-linkedin" target="_blank"
+            style="font-size: 16px;">LinkedIn | GitHub</a>
         </div>
-        
+
         <!-- Contact Form -->
         <div style="flex: 1; min-width: 300px; width: 100%;">
-          <form id="contact-form" style="display: flex; flex-direction: column; gap: 20px; background: var(--dark2); padding: 40px; border-radius: 16px; border: 1px solid var(--border); text-align: left; backdrop-filter: blur(10px);">
+          <form id="contact-form"
+            style="display: flex; flex-direction: column; gap: 20px; background: var(--dark2); padding: 40px; border-radius: 16px; border: 1px solid var(--border); text-align: left; backdrop-filter: blur(10px);">
             <div style="display: flex; flex-direction: column; gap: 8px;">
-              <label style="font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gold);">Name</label>
-              <input type="text" name="name" placeholder="Your Name" required style="background: transparent; border: none; border-bottom: 1px solid var(--border); color: var(--text); padding: 8px 0; font-family: 'Inter', sans-serif; font-size: 14px; outline: none; transition: border-color 0.3s;" onfocus="this.style.borderColor='var(--gold)'" onblur="this.style.borderColor='var(--border)'">
+              <label
+                style="font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gold);">Name</label>
+              <input type="text" name="name" placeholder="Your Name" required
+                style="background: transparent; border: none; border-bottom: 1px solid var(--border); color: var(--text); padding: 8px 0; font-family: 'Inter', sans-serif; font-size: 14px; outline: none; transition: border-color 0.3s;"
+                onfocus="this.style.borderColor='var(--gold)'" onblur="this.style.borderColor='var(--border)'">
             </div>
             <div style="display: flex; flex-direction: column; gap: 8px;">
-              <label style="font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gold);">Email</label>
-              <input type="email" name="email" placeholder="you@example.com" required style="background: transparent; border: none; border-bottom: 1px solid var(--border); color: var(--text); padding: 8px 0; font-family: 'Inter', sans-serif; font-size: 14px; outline: none; transition: border-color 0.3s;" onfocus="this.style.borderColor='var(--gold)'" onblur="this.style.borderColor='var(--border)'">
+              <label
+                style="font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gold);">Email</label>
+              <input type="email" name="email" placeholder="you@example.com" required
+                style="background: transparent; border: none; border-bottom: 1px solid var(--border); color: var(--text); padding: 8px 0; font-family: 'Inter', sans-serif; font-size: 14px; outline: none; transition: border-color 0.3s;"
+                onfocus="this.style.borderColor='var(--gold)'" onblur="this.style.borderColor='var(--border)'">
             </div>
             <div style="display: flex; flex-direction: column; gap: 8px;">
-              <label style="font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gold);">Phone Number</label>
-              <input type="text" name="phone" placeholder="+91 0000000000" required style="background: transparent; border: none; border-bottom: 1px solid var(--border); color: var(--text); padding: 8px 0; font-family: 'Inter', sans-serif; font-size: 14px; outline: none; transition: border-color 0.3s;" onfocus="this.style.borderColor='var(--gold)'" onblur="this.style.borderColor='var(--border)'">
+              <label
+                style="font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gold);">Phone
+                Number</label>
+              <input type="text" name="phone" placeholder="+91 0000000000" required
+                style="background: transparent; border: none; border-bottom: 1px solid var(--border); color: var(--text); padding: 8px 0; font-family: 'Inter', sans-serif; font-size: 14px; outline: none; transition: border-color 0.3s;"
+                onfocus="this.style.borderColor='var(--gold)'" onblur="this.style.borderColor='var(--border)'">
             </div>
             <div style="display: flex; flex-direction: column; gap: 8px;">
-              <label style="font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gold);">Message</label>
-              <textarea name="message" placeholder="How can we collaborate?" rows="3" required style="background: transparent; border: none; border-bottom: 1px solid var(--border); color: var(--text); padding: 8px 0; font-family: 'Inter', sans-serif; font-size: 14px; outline: none; resize: none; transition: border-color 0.3s;" onfocus="this.style.borderColor='var(--gold)'" onblur="this.style.borderColor='var(--border)'"></textarea>
+              <label
+                style="font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gold);">Message</label>
+              <textarea name="message" placeholder="How can we collaborate?" rows="3" required
+                style="background: transparent; border: none; border-bottom: 1px solid var(--border); color: var(--text); padding: 8px 0; font-family: 'Inter', sans-serif; font-size: 14px; outline: none; resize: none; transition: border-color 0.3s;"
+                onfocus="this.style.borderColor='var(--gold)'"
+                onblur="this.style.borderColor='var(--border)'"></textarea>
             </div>
-            <button type="submit" class="btn-primary" style="margin-top: 16px; align-self: flex-start; padding: 14px 40px;">Send Message</button>
+            <button type="submit" class="btn-primary"
+              style="margin-top: 16px; align-self: flex-start; padding: 14px 40px;">Send Message</button>
           </form>
 
           <script>
@@ -542,20 +583,20 @@
             const supabaseKey = 'sb_publishable_twnKbFOb8IEzgD3J77EkNA_EUGRbSzC';
             const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
 
-            document.getElementById('contact-form').addEventListener('submit', async function(e) {
+            document.getElementById('contact-form').addEventListener('submit', async function (e) {
               e.preventDefault();
               const form = e.target;
-              
+
               const btn = form.querySelector('button[type="submit"]');
               const originalText = btn.innerText;
               btn.innerText = 'Sending...';
-              
+
               // Get values from form
               const name = form.querySelector('[name="name"]').value;
               const email = form.querySelector('[name="email"]').value;
               const phone = form.querySelector('[name="phone"]').value;
               const message = form.querySelector('[name="message"]').value;
-              
+
               // Insert into the "contacts" table inside Supabase
               const { data, error } = await supabase
                 .from('contacts')
@@ -569,12 +610,12 @@
                 alert('Your message has been saved to your Supabase Database successfully!');
                 form.reset();
               }
-              
+
               btn.innerText = originalText;
             });
           </script>
         </div>
-        
+
       </div>
     </div>
   </section>
