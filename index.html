@@ -1,635 +1,558 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Antony Sebastian — AI & MLOps Portfolio</title>
-  <link rel="stylesheet" href="./style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>Antony Sebastian | AI & MLOps Portfolio</title>
+  <!-- Google Fonts + simple reset -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #f8fafc;
+      color: #0f172a;
+      line-height: 1.5;
+      scroll-behavior: smooth;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+    }
+
+    /* header / hero */
+    .hero {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 3rem;
+      padding-bottom: 2rem;
+      border-bottom: 2px solid #e2e8f0;
+      gap: 2rem;
+    }
+
+    .hero-info {
+        flex: 1;
+        min-width: 300px;
+    }
+
+    .hero-info h1 {
+      font-size: 2.8rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #1e293b, #3b82f6);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      letter-spacing: -0.02em;
+    }
+
+    .hero-info .tagline {
+      font-size: 1.2rem;
+      font-weight: 500;
+      color: #334155;
+      margin: 0.5rem 0 0.75rem 0;
+    }
+
+    .contact-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .contact-buttons a {
+      text-decoration: none;
+      background: white;
+      padding: 0.5rem 1.2rem;
+      border-radius: 40px;
+      font-weight: 500;
+      font-size: 0.9rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: #1e293b;
+      border: 1px solid #cbd5e1;
+      transition: all 0.2s;
+    }
+
+    .contact-buttons a:hover {
+      background: #0f172a;
+      color: white;
+      border-color: #0f172a;
+      transform: translateY(-2px);
+    }
+
+    .badge-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.7rem;
+      margin-top: 1.2rem;
+    }
+
+    .badge {
+      background: #eef2ff;
+      padding: 0.25rem 0.9rem;
+      border-radius: 30px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #1e40af;
+    }
+
+    /* grid layout */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .card {
+      background: white;
+      border-radius: 28px;
+      padding: 1.6rem 1.8rem;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.02), 0 2px 6px rgba(0,0,0,0.05);
+      border: 1px solid #e9edf2;
+      transition: all 0.2s;
+    }
+
+    .card:hover {
+      box-shadow: 0 20px 30px -12px rgba(0,0,0,0.08);
+      border-color: #cbdff5;
+    }
+
+    .section-title {
+      font-size: 1.7rem;
+      font-weight: 700;
+      margin-bottom: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      border-left: 5px solid #3b82f6;
+      padding-left: 1rem;
+    }
+
+    .section-title i {
+      color: #3b82f6;
+      font-size: 1.5rem;
+    }
+
+    .exp-item, .project-item, .cert-item {
+      margin-bottom: 1.6rem;
+    }
+
+    .exp-header, .project-header {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 0.4rem;
+    }
+
+    .exp-role, .project-name {
+      font-weight: 800;
+      font-size: 1.1rem;
+      color: #0f172a;
+    }
+
+    .exp-company, .project-tech {
+      font-weight: 500;
+      color: #3b82f6;
+      font-size: 0.85rem;
+    }
+
+    .exp-date, .project-date {
+      font-size: 0.75rem;
+      color: #64748b;
+      font-weight: 400;
+    }
+
+    .exp-desc, .project-desc {
+      font-size: 0.9rem;
+      color: #334155;
+      margin-top: 0.5rem;
+      padding-left: 0.2rem;
+      list-style-position: inside;
+    }
+
+    .exp-desc li, .project-desc li {
+      margin-bottom: 0.4rem;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    ul li {
+      margin-bottom: 0.5rem;
+      position: relative;
+      padding-left: 1.3rem;
+    }
+
+    ul li::before {
+      content: "▹";
+      position: absolute;
+      left: 0;
+      color: #3b82f6;
+      font-weight: 600;
+    }
+
+    .skills-cloud {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.7rem;
+      margin-top: 0.8rem;
+    }
+
+    .skill-pill {
+      background: #f1f5f9;
+      padding: 0.4rem 1rem;
+      border-radius: 40px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: #1e293b;
+      transition: 0.1s;
+    }
+
+    .skill-pill strong {
+      font-weight: 700;
+      color: #075985;
+    }
+
+    .cert-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-top: 0.5rem;
+    }
+
+    .cert-badge {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      padding: 0.3rem 1rem;
+      border-radius: 40px;
+      font-size: 0.75rem;
+      font-weight: 500;
+    }
+
+    hr {
+      margin: 1rem 0;
+      border: 0;
+      height: 1px;
+      background: #e2e8f0;
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid #e2e8f0;
+      font-size: 0.8rem;
+      color: #5b6e8c;
+    }
+
+    @media (max-width: 780px) {
+      .grid-2 {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+      .hero {
+        flex-direction: column;
+        align-items: start;
+        gap: 1rem;
+      }
+      .hero-info h1 {
+        font-size: 2rem;
+      }
+      .container {
+        padding: 1.2rem;
+      }
+      .card {
+        padding: 1.2rem;
+      }
+    }
+  </style>
 </head>
-
 <body>
-
-  <div id="cursor"></div>
-  <div id="cursor-ring"></div>
-
-  <!-- NAV -->
-  <nav>
-    <div class="nav-logo">AS</div>
-    <ul class="nav-links">
-      <li><a href="#about">About</a></li>
-      <li><a href="#work">Work</a></li>
-      <li><a href="#experience">Experience</a></li>
-      <li><a href="#skills">Expertise</a></li>
-      <li><a href="#services">Services</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-  </nav>
-
-  <!-- HERO -->
-  <section id="hero"
-    style="display: flex; align-items: center; justify-content: space-between; gap: 40px; flex-wrap: wrap;">
-    <div style="flex: 1.2; min-width: 300px;">
-      <div class="hero-line"></div>
-      <div class="hero-sub" style="letter-spacing: 0.15em;">Generative AI · Machine Learning · MLOps · Backend
-        Engineering</div>
-      <h1 class="hero-title" style="font-size: clamp(48px, 6vw, 90px); line-height: 1.1; margin-bottom: 24px;">
-        <span class="line"><span class="word">Designing</span></span>
-        <span class="line"><span class="word">Scalable <em
-              style="background: linear-gradient(90deg, var(--gold), var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; color: transparent;">AI
-              Systems</em></span></span>
-        <span class="line"><span class="word">That Solve Real-World Problems.</span></span>
-      </h1>
-      <p class="hero-desc" style="max-width: 600px; margin-bottom: 40px; font-size: 16px;">
-        I’m Antony Sebastian — an MCA graduate specializing in Generative AI, Machine Learning, and production-ready AI
-        systems. <br><br>
-        I build intelligent applications that scale, automate, and deliver real impact using modern AI stacks and cloud
-        platforms.
-      </p>
-      <div class="hero-cta">
-        <button class="btn-primary" onclick="document.getElementById('work').scrollIntoView({behavior:'smooth'})">View
-          Projects</button>
-        <a href="#contact" class="btn-link">Let's talk</a>
+<div class="container">
+  <!-- Hero Section -->
+  <div class="hero">
+    <div class="hero-info">
+      <h1>Antony Sebastian</h1>
+      <div class="tagline">
+        <i class="fas fa-brain" style="color:#3b82f6;"></i> MCA Graduate | Generative AI & MLOps Engineer
       </div>
-      <div class="hero-scroll" style="position: relative; margin-top: 60px;">
-        <div class="scroll-line"></div>
-        <span>Scroll</span>
+      <div class="badge-group">
+        <span class="badge"><i class="fas fa-robot"></i> GenAI</span>
+        <span class="badge"><i class="fas fa-chart-line"></i> MLOps</span>
+        <span class="badge"><i class="fas fa-cloud-upload-alt"></i> Azure / Vertex AI</span>
+        <span class="badge"><i class="fas fa-code"></i> Flask/FastAPI</span>
+      </div>
+      <div class="contact-buttons">
+        <a href="#contact"><i class="fas fa-envelope"></i> ajoantony19@gmail.com</a>
+        <a href="tel:+919496940988"><i class="fas fa-phone-alt"></i> +91 9496940988</a>
+        <a href="#" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+        <a href="#" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+      </div>
+      <div style="font-size: 0.9rem; background: #f1f4f9; padding: 0.8rem 1.2rem; border-radius: 40px; display: inline-block; margin-top: 1rem;">
+        <i class="fas fa-map-marker-alt"></i> Kerala, India &nbsp;|&nbsp; <i class="fas fa-clock"></i> Immediate Joiner
       </div>
     </div>
-    <div class="hero-image-container reveal"
-      style="flex: 0.8; min-width: 300px; display: flex; justify-content: center; position: relative;">
-      <div
-        style="position: absolute; inset: -20px; border-radius: 50%; background: radial-gradient(circle, rgba(0,242,254,0.1), transparent 70%); z-index: -1;">
-      </div>
-      <img src="./assets/profile.png" alt="Antony Sebastian"
-        style="width: 100%; max-width: 400px; border-radius: 20px; object-fit: cover; aspect-ratio: 4/5; border: 1px solid var(--border); box-shadow: 0 20px 40px rgba(0,0,0,0.5);">
+    
+    <div class="hero-image" style="flex-shrink: 0; position: relative;">
+      <div style="position: absolute; inset: -10px; background: #eef2ff; border-radius: 50%; z-index: -1;"></div>
+      <img src="./assets/profile.png" alt="Antony Sebastian" style="width: 220px; height: 220px; border-radius: 50%; object-fit: cover; border: 6px solid white; box-shadow: 0 10px 25px rgba(0,0,0,0.1);">
     </div>
-  </section>
+  </div>
 
-  <!-- ABOUT -->
-  <section id="about">
-    <div class="about-img reveal-left"
-      style="padding: 0; overflow: hidden; display: flex; justify-content: center; align-items: center;">
-      <img src="./assets/about.png" alt="About Me" style="width: 100%; height: 100%; object-fit: cover;">
-    </div>
-    <div class="reveal-right">
-      <div class="about-tag">Professional Summary</div>
-      <div class="gold-rule"></div>
-      <h2 class="about-heading">Deploying AI<br>with <em>precision</em></h2>
-      <p class="about-text">
-        I specialize in building end-to-end AI systems — from data processing and model development to deployment,
-        monitoring, and optimization.
-      </p>
-      <p class="about-text">
-        My expertise spans Generative AI, Machine Learning, and MLOps, with hands-on experience in designing scalable
-        architectures using Python, REST APIs, and cloud platforms. I have worked extensively with Large Language
-        Models, prompt engineering, Retrieval-Augmented Generation (RAG), and vector databases.
-      </p>
-      <ul style="color: var(--muted); margin-bottom: 20px; font-size: 15px; margin-left: 20px; line-height: 1.8;">
-        <li>Production-ready AI systems</li>
-        <li>Scalable backend architectures</li>
-        <li>Real-time AI applications</li>
-        <li>Continuous integration & deployment</li>
-      </ul>
-      <p class="about-text">
-        I am passionate about pushing the boundaries of AI using Azure, Google Vertex AI, and modern MLOps practices.
-      </p>
-      <div class="about-stats">
-        <div>
-          <div class="stat-num">6+</div>
-          <div class="stat-label">AI & Full-Stack Projects</div>
+  <!-- Two column layout: left: experience + internships, right: projects + certs -->
+  <div class="grid-2">
+    <!-- LEFT COLUMN -->
+    <div>
+      <!-- Professional Summary Card -->
+      <div class="card">
+        <div class="section-title">
+          <i class="fas fa-user-astronaut"></i> 
+          <span>Professional Summary</span>
         </div>
-        <div>
-          <div class="stat-num">3</div>
-          <div class="stat-label">Internships</div>
-        </div>
-        <div>
-          <div class="stat-num">10+</div>
-          <div class="stat-label">Certifications</div>
-        </div>
-        <div>
-          <div class="stat-num" style="color: var(--gold);">100%</div>
-          <div class="stat-label">Focus on Scalable Systems</div>
-        </div>
+        <p style="color: #1e293b; font-weight: 400; line-height: 1.5;">MCA graduate specializing in <strong>Generative AI and MLOps</strong>, with hands-on experience building, deploying, and monitoring ML applications. Strong foundation in Python, ML pipelines, REST APIs, and GenAI systems using Cohere and cloud-based AI platforms. Passionate about scalable AI deployment, CI/CD concepts, and continuous learning in <strong>Azure and Vertex AI</strong> ecosystems.</p>
       </div>
-    </div>
-  </section>
 
-  <!-- SERVICES -->
-  <section id="services" style="padding-top: 100px; padding-bottom: 40px;">
-    <div class="section-header reveal">
-      <div>
-        <div class="section-tag">Offerings</div>
-        <h2 class="section-title">Freelance<br><em>Services</em></h2>
-      </div>
-    </div>
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px;">
-      <!-- Service 1: AI/ML -->
-      <div class="exp-item reveal delay-1"
-        style="display: flex; flex-direction: column; justify-content: space-between;">
-        <div>
-          <div class="skill-icon" style="font-size: 32px; margin-bottom: 16px;">Ai / Ml</div>
-          <div class="exp-title" style="font-size: 28px;">AI & Machine Learning</div>
-          <div class="exp-desc" style="margin-top: 16px;">
-            <ul style="margin-left: 20px;">
-              <li>Custom AI model development</li>
-              <li>Generative AI applications (Chatbots, AI Assistants)</li>
-              <li>RAG-based systems</li>
-              <li>Business automation using AI</li>
-              <li>AI-powered analytics systems</li>
-            </ul>
+      <!-- Experience & Internships -->
+      <div class="card">
+        <div class="section-title">
+          <i class="fas fa-briefcase"></i>
+          <span>Internships & Experience</span>
+        </div>
+
+        <div class="exp-item">
+          <div class="exp-header">
+            <span class="exp-role">Web Application Developer Intern</span>
+            <span class="exp-date">Jan 2025 – Apr 2025</span>
           </div>
-        </div>
-        <div style="margin-top: 36px; z-index: 2; position: relative;">
-          <a href="#contact" class="btn-primary"
-            style="display: inline-block; text-decoration: none; padding: 12px 32px;">Contact for AI Projects</a>
-        </div>
-      </div>
-
-      <!-- Service 2: MLOps -->
-      <div class="exp-item reveal delay-2"
-        style="display: flex; flex-direction: column; justify-content: space-between;">
-        <div>
-          <div class="skill-icon" style="font-size: 32px; margin-bottom: 16px;">Op / Cl</div>
-          <div class="exp-title" style="font-size: 28px;">MLOps & Deployment</div>
-          <div class="exp-desc" style="margin-top: 16px;">
-            <ul style="margin-left: 20px;">
-              <li>ML model deployment (Flask, FastAPI, Streamlit)</li>
-              <li>CI/CD pipeline setup</li>
-              <li>Model monitoring & optimization</li>
-              <li>Scalable AI system architecture</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      <!-- Service 3: Websites -->
-      <div class="exp-item reveal delay-3"
-        style="display: flex; flex-direction: column; justify-content: space-between;">
-        <div>
-          <div class="skill-icon" style="font-size: 32px; margin-bottom: 16px;">Wb / Ui</div>
-          <div class="exp-title" style="font-size: 28px;">Full-Stack Development</div>
-          <div class="exp-desc" style="margin-top: 16px;">
-            <ul style="margin-left: 20px;">
-              <li>Responsive web applications</li>
-              <li>Portfolio websites</li>
-              <li>API-based applications</li>
-              <li>Database-integrated systems</li>
-            </ul>
-          </div>
-        </div>
-        <div style="margin-top: 36px; z-index: 2; position: relative;">
-          <a href="#contact" class="btn-primary"
-            style="display: inline-block; text-decoration: none; padding: 12px 32px;">Contact for Web Projects</a>
-        </div>
-      </div>
-
-      <!-- Service 4: Security -->
-      <div class="exp-item reveal delay-4"
-        style="display: flex; flex-direction: column; justify-content: space-between;">
-        <div>
-          <div class="skill-icon" style="font-size: 32px; margin-bottom: 16px;">Sc / Db</div>
-          <div class="exp-title" style="font-size: 28px;">Secure Application Development</div>
-          <div class="exp-desc" style="margin-top: 16px;">
-            <ul style="margin-left: 20px;">
-              <li>Basic security implementation</li>
-              <li>Authentication systems</li>
-              <li>Secure API design</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- WORK (Projects) -->
-  <section id="work">
-    <div class="section-header reveal">
-      <div>
-        <div class="section-tag">Targeted Projects</div>
-        <h2 class="section-title">Selected<br><em>Work</em></h2>
-      </div>
-    </div>
-    <div class="projects-grid">
-      <!-- Project 1 -->
-      <div class="project-card reveal delay-1">
-        <div class="project-image-container">
-          <img src="./assets/project1.png" alt="SmartHire" class="project-bg">
-        </div>
-        <div class="project-info">
-          <div class="project-num">01 / 04</div>
-          <div class="project-name">SmartHire platform</div>
-          <div class="project-type">Python · Streamlit · Cohere Command-R+</div>
-          <div style="font-size: 13px; line-height: 1.8; color: var(--muted);">
-            <div style="margin-bottom: 4px;"><strong>Key Features:</strong> AI parsing, Auto-resume scanning</div>
-            <div style="margin-bottom: 4px;"><strong>Tech Stack:</strong> Python, Streamlit, Cohere API</div>
-            <div><strong>Impact:</strong> Automated recruitment workflows</div>
-          </div>
-        </div>
-      </div>
-      <!-- Project 2 -->
-      <div class="project-card reveal delay-2">
-        <div class="project-image-container">
-          <img src="./assets/project2.png" alt="CareGuides ML" class="project-bg">
-        </div>
-        <div class="project-info">
-          <div class="project-num">02 / 04</div>
-          <div class="project-name">CareGuides ML</div>
-          <div class="project-type">ASD Prediction Model · MLOps Pipeline</div>
-          <div style="font-size: 13px; line-height: 1.8; color: var(--muted);">
-            <div style="margin-bottom: 4px;"><strong>Key Features:</strong> ML diagnostic checks, API endpoints</div>
-            <div style="margin-bottom: 4px;"><strong>Tech Stack:</strong> Python, Flask, Scikit-Learn</div>
-            <div><strong>Impact:</strong> Early detection efficiency</div>
-          </div>
-        </div>
-      </div>
-      <!-- Project 3 -->
-      <div class="project-card reveal delay-3">
-        <div class="project-image-container">
-          <img src="./assets/project3.png" alt="RizzBot AI" class="project-bg">
-        </div>
-        <div class="project-info">
-          <div class="project-num">03 / 04</div>
-          <div class="project-name">RizzBot Chatbot</div>
-          <div class="project-type">Real-Time Flask App · Prompt Engineering</div>
-          <div style="font-size: 13px; line-height: 1.8; color: var(--muted);">
-            <div style="margin-bottom: 4px;"><strong>Key Features:</strong> Prompt engineering, Real-time query
-              processing</div>
-            <div style="margin-bottom: 4px;"><strong>Tech Stack:</strong> Python, Flask, Cohere API, JS</div>
-            <div><strong>Impact:</strong> Interactive and engaging user solutions</div>
-          </div>
-        </div>
-      </div>
-      <!-- Project 4 -->
-      <div class="project-card reveal delay-4">
-        <div class="project-image-container">
-          <img src="./assets/project4.png" alt="Ezy Parking" class="project-bg">
-        </div>
-        <div class="project-info">
-          <div class="project-num">04 / 04</div>
-          <div class="project-name">Ezy Parking</div>
-          <div class="project-type">Full-stack Management System · MySQL</div>
-          <div style="font-size: 13px; line-height: 1.8; color: var(--muted);">
-            <div style="margin-bottom: 4px;"><strong>Key Features:</strong> DB management, Live tracking API</div>
-            <div style="margin-bottom: 4px;"><strong>Tech Stack:</strong> HTML, CSS, JavaScript, MySQL</div>
-            <div><strong>Impact:</strong> Automated parking workflows</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- EXPERIENCE -->
-  <section id="experience">
-    <div class="section-header reveal">
-      <div>
-        <div class="section-tag">Career History</div>
-        <h2 class="section-title">Professional<br><em>Experience</em></h2>
-        <p style="margin-top: 16px; color: var(--muted); max-width: 600px; font-size: 15px; line-height: 1.8;">
-          Focused on real-world problem solving, backend development, and system optimization.<br><br>
-          Hands-on experience in: <strong>API development • Database systems • Secure coding practices • Performance
-            optimization</strong>
-        </p>
-      </div>
-    </div>
-    <div class="exp-grid">
-      <div class="exp-item reveal delay-1">
-        <div class="exp-title">Logix Space Technologies</div>
-        <div class="exp-role">Web Application Developer Intern</div>
-        <div class="exp-date">Jan 2025 – Apr 2025 · Kerala, India</div>
-        <div class="exp-desc">
-          <ul>
+          <div class="exp-company">Logix Space Technologies Pvt. Ltd. | Kerala, India</div>
+          <ul class="exp-desc">
             <li>Developed backend modules using Python and MySQL, supporting REST-based workflows.</li>
             <li>Worked on database-driven applications and API integrations.</li>
             <li>Collaborated with developers to improve application reliability and performance.</li>
           </ul>
         </div>
-      </div>
-      <div class="exp-item reveal delay-2">
-        <div class="exp-title">Techbyheart Trivandrum LLP</div>
-        <div class="exp-role">Cyber Security & Ethical Hacking Intern</div>
-        <div class="exp-date">Jun 2024 – Jul 2024 · Trivandrum, India</div>
-        <div class="exp-desc">
-          <ul>
+
+        <div class="exp-item">
+          <div class="exp-header">
+            <span class="exp-role">Cyber Security & Ethical Hacking Intern</span>
+            <span class="exp-date">Jun 2024 – Jul 2024</span>
+          </div>
+          <div class="exp-company">Techbyheart Trivandrum LLP | Trivandrum, India</div>
+          <ul class="exp-desc">
             <li>Learned security fundamentals, vulnerability assessment, and ethical hacking concepts.</li>
             <li>Gained exposure to system security, risk analysis, and mitigation techniques.</li>
           </ul>
         </div>
-      </div>
-      <div class="exp-item reveal delay-3">
-        <div class="exp-title">Skill Vertex</div>
-        <div class="exp-role">Web Development Intern</div>
-        <div class="exp-date">Oct 2023 – Dec 2023 · Bengaluru, India</div>
-        <div class="exp-desc">
-          <ul>
+
+        <div class="exp-item">
+          <div class="exp-header">
+            <span class="exp-role">Web Development Intern</span>
+            <span class="exp-date">Oct 2023 – Dec 2023</span>
+          </div>
+          <div class="exp-company">Skill Vertex | Bengaluru, India</div>
+          <ul class="exp-desc">
             <li>Built responsive web applications using HTML, CSS, JavaScript, and backend integration.</li>
           </ul>
         </div>
+        <hr>
+        <div>
+          <div class="exp-header" style="margin-bottom: 5px;">
+            <span class="exp-role">Education</span>
+          </div>
+          <div><strong>Integrated MCA</strong> – Saintgits College of Engineering (Autonomous) <br> APJ Abdul Kalam Technological University, Kerala <br> <span style="font-size:0.85rem;">CGPA: 7.83/10 | 2020 – 2025</span></div>
+          <div style="margin-top: 8px; font-size:0.85rem; color:#2c3e66;"><i class="fas fa-graduation-cap"></i> Relevant Coursework: Machine Learning, Data Structures, Databases, Software Engineering</div>
+        </div>
       </div>
-    </div>
-  </section>
 
-  <!-- SKILLS -->
-  <section id="skills">
-    <div class="section-header">
-      <div class="reveal">
-        <div class="section-tag">Technical Competencies</div>
-        <h2 class="section-title">Core<br><em>Expertise</em></h2>
-      </div>
-    </div>
-    <div class="skills-grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));">
-      <div class="skill-item reveal delay-1">
-        <div class="skill-icon">Ai</div>
-        <div class="skill-name">Generative AI</div>
-        <div class="skill-desc">
-          <ul style="margin-left: 16px; color: var(--muted); font-size: 13px;">
-            <li>Large Language Models (LLMs)</li>
-            <li>Prompt Engineering & Optimization</li>
-            <li>RAG & Vector Databases</li>
-            <li>AI Chatbot Development</li>
-            <li>Cohere API Integration</li>
-          </ul>
+      <!-- Technical Skills (detailed) -->
+      <div class="card">
+        <div class="section-title">
+          <i class="fas fa-code-branch"></i>
+          <span>Technical Arsenal</span>
         </div>
-      </div>
-      <div class="skill-item reveal delay-2">
-        <div class="skill-icon">Ml</div>
-        <div class="skill-name">Machine Learning</div>
-        <div class="skill-desc">
-          <ul style="margin-left: 16px; color: var(--muted); font-size: 13px;">
-            <li>Supervised & Unsupervised Learning</li>
-            <li>NLP</li>
-            <li>Classification & Prediction</li>
-            <li>Feature Engineering</li>
-            <li>Model Evaluation</li>
-          </ul>
+        <div class="skills-cloud">
+          <span class="skill-pill"><strong>Python</strong> | ML/DL</span>
+          <span class="skill-pill"><strong>GenAI:</strong> Cohere API, Prompt Eng, Embeddings</span>
+          <span class="skill-pill"><strong>MLOps:</strong> Model Deployment, Drift, CI/CD concepts</span>
+          <span class="skill-pill"><strong>Cloud:</strong> Azure Fundamentals, Vertex AI</span>
+          <span class="skill-pill"><strong>Frameworks:</strong> Flask, FastAPI, Streamlit</span>
+          <span class="skill-pill"><strong>DB:</strong> MySQL, SQL</span>
+          <span class="skill-pill">Docker (basics) | Kubernetes (basics)</span>
+          <span class="skill-pill">NLP | Vector Search | RAG</span>
         </div>
-      </div>
-      <div class="skill-item reveal delay-3">
-        <div class="skill-icon">Op</div>
-        <div class="skill-name">MLOps</div>
-        <div class="skill-desc">
-          <ul style="margin-left: 16px; color: var(--muted); font-size: 13px;">
-            <li>Model Deployment (Flask, FastAPI)</li>
-            <li>CI/CD for ML pipelines</li>
-            <li>Model Monitoring & Data Drift</li>
-            <li>Pipeline Automation</li>
-            <li>Docker & Containerization</li>
-          </ul>
-        </div>
-      </div>
-      <div class="skill-item reveal delay-4">
-        <div class="skill-icon">Bk</div>
-        <div class="skill-name">Backend Engineering</div>
-        <div class="skill-desc">
-          <ul style="margin-left: 16px; color: var(--muted); font-size: 13px;">
-            <li>REST API Development</li>
-            <li>Authentication Systems</li>
-            <li>Scalable Architecture</li>
-            <li>Microservices Fundamentals</li>
-          </ul>
-        </div>
-      </div>
-      <div class="skill-item reveal delay-1">
-        <div class="skill-icon">Cl</div>
-        <div class="skill-name">Cloud & AI Platforms</div>
-        <div class="skill-desc">
-          <ul style="margin-left: 16px; color: var(--muted); font-size: 13px;">
-            <li>Microsoft Azure (AI & Deployment)</li>
-            <li>Google Vertex AI</li>
-            <li>Cloud-based ML deployment</li>
-          </ul>
-        </div>
-      </div>
-      <div class="skill-item reveal delay-2">
-        <div class="skill-icon">Db</div>
-        <div class="skill-name">Database Systems</div>
-        <div class="skill-desc">
-          <ul style="margin-left: 16px; color: var(--muted); font-size: 13px;">
-            <li>MySQL</li>
-            <li>Database Design & Optimization</li>
-            <li>Data Modeling</li>
-          </ul>
-        </div>
-      </div>
-      <div class="skill-item reveal delay-3">
-        <div class="skill-icon">Sc</div>
-        <div class="skill-name">Cyber Security Basics</div>
-        <div class="skill-desc">
-          <ul style="margin-left: 16px; color: var(--muted); font-size: 13px;">
-            <li>Vulnerability Assessment</li>
-            <li>Ethical Hacking Concepts</li>
-            <li>Secure Application Development</li>
-          </ul>
-        </div>
-      </div>
-      <div class="skill-item reveal delay-4">
-        <div class="skill-icon">Wb</div>
-        <div class="skill-name">Web Development</div>
-        <div class="skill-desc">
-          <ul style="margin-left: 16px; color: var(--muted); font-size: 13px;">
-            <li>HTML, CSS, JavaScript</li>
-            <li>Responsive UI/UX Design</li>
-            <li>Full-stack Web Applications</li>
-          </ul>
+        <div style="margin-top: 1rem;">
+          <div class="section-title" style="margin-bottom: 0.7rem; font-size:1.2rem;"><i class="fas fa-certificate"></i> Certifications</div>
+          <div class="cert-grid">
+            <span class="cert-badge">Google Business Intelligence</span>
+            <span class="cert-badge">Google Cloud Digital Leader</span>
+            <span class="cert-badge">AWS GenAI & AI Agents (Bedrock)</span>
+            <span class="cert-badge">IBM Advanced RAG + Vector DB</span>
+            <span class="cert-badge">IBM Develop GenAI Applications</span>
+            <span class="cert-badge">Python for Data Science (IBM)</span>
+            <span class="cert-badge">Anthropic AI Fluency</span>
+            <span class="cert-badge">Deep Learning for CV (WQU)</span>
+            <span class="cert-badge">freeCodeCamp ML with Python</span>
+            <span class="cert-badge">PMI Agile Fundamentals</span>
+          </div>
         </div>
       </div>
     </div>
-  </section>
 
-  <!-- TECH STACK -->
-  <section id="tech-stack" style="padding-top: 100px; padding-bottom: 40px;">
-    <div class="section-header reveal">
-      <div>
-        <div class="section-tag">Technologies</div>
-        <h2 class="section-title">Tech<br><em>Stack</em></h2>
+    <!-- RIGHT COLUMN: Projects & additional -->
+    <div>
+      <!-- Featured Projects -->
+      <div class="card">
+        <div class="section-title">
+          <i class="fas fa-laptop-code"></i>
+          <span>AI / ML Engineering Projects</span>
+        </div>
+
+        <div class="project-item">
+          <img src="./assets/project2.png" alt="CareGuides" style="width: 100%; height: 180px; object-fit: cover; border-radius: 12px; margin-bottom: 12px; border: 1px solid #e2e8f0;">
+          <div class="project-header">
+            <span class="project-name">CareGuides – ML Autism Diagnosis & Therapy</span>
+          </div>
+          <ul class="project-desc">
+            <li>End-to-end ML system to predict Autism Spectrum Disorder (ASD).</li>
+            <li>Implemented Flask REST APIs for model inference & backend orchestration.</li>
+          </ul>
+        </div>
+
+        <div class="project-item">
+          <img src="./assets/project1.png" alt="SmartHire" style="width: 100%; height: 180px; object-fit: cover; border-radius: 12px; margin-bottom: 12px; border: 1px solid #e2e8f0;">
+          <div class="project-header">
+            <span class="project-name">SmartHire – GenAI Resume Screening & ATS</span>
+          </div>
+          <ul class="project-desc">
+            <li>Built GenAI-powered resume analysis platform with Python and Streamlit.</li>
+            <li>ATS scoring, skill gap analysis, keyword extraction, HR-style feedback.</li>
+          </ul>
+        </div>
+
+        <div class="project-item">
+          <img src="./assets/project3.png" alt="RizzBot AI" style="width: 100%; height: 180px; object-fit: cover; border-radius: 12px; margin-bottom: 12px; border: 1px solid #e2e8f0;">
+          <div class="project-header">
+            <span class="project-name">RizzBot – Real-Time Generative AI Chatbot</span>
+          </div>
+          <ul class="project-desc">
+            <li>Developed real-time chatbot using Flask and Cohere API for conversational AI.</li>
+            <li>Focused on prompt engineering, response latency optimization, and NLP.</li>
+          </ul>
+        </div>
+        
+        <div class="project-item">
+          <img src="./assets/project4.png" alt="Ezy Parking" style="width: 100%; height: 180px; object-fit: cover; border-radius: 12px; margin-bottom: 12px; border: 1px solid #e2e8f0;">
+          <div class="project-header">
+            <span class="project-name">Ezy Parking – Management System</span>
+          </div>
+          <ul class="project-desc">
+            <li>Full-stack parking management system with real-time availability.</li>
+          </ul>
+        </div>
       </div>
-    </div>
-    <div style="display: flex; flex-wrap: wrap; gap: 12px; margin-top: 40px;">
-      <!-- Languages -->
-      <div class="exp-item reveal delay-1" style="flex: 1 1 300px;">
-        <div style="font-family: 'Outfit', sans-serif; font-size: 20px; color: var(--gold); margin-bottom: 12px;">
-          Languages</div>
-        <div style="color: var(--muted); font-size: 14px;">Python, JavaScript, SQL</div>
-      </div>
-      <!-- Frameworks -->
-      <div class="exp-item reveal delay-2" style="flex: 1 1 300px;">
-        <div style="font-family: 'Outfit', sans-serif; font-size: 20px; color: var(--accent); margin-bottom: 12px;">
-          Frameworks & Tools</div>
-        <div style="color: var(--muted); font-size: 14px;">Flask, FastAPI, Streamlit</div>
-      </div>
-      <!-- AI & ML -->
-      <div class="exp-item reveal delay-3" style="flex: 1 1 300px;">
-        <div style="font-family: 'Outfit', sans-serif; font-size: 20px; color: var(--gold); margin-bottom: 12px;">AI &
-          ML</div>
-        <div style="color: var(--muted); font-size: 14px;">Cohere API, NLP, RAG, LLM Applications</div>
-      </div>
-      <!-- Cloud & DB -->
-      <div class="exp-item reveal delay-4" style="flex: 1 1 300px;">
-        <div style="font-family: 'Outfit', sans-serif; font-size: 20px; color: var(--accent); margin-bottom: 12px;">
-          Cloud & Databases</div>
-        <div style="color: var(--muted); font-size: 14px;">Azure, Google Vertex AI, MySQL</div>
-      </div>
-      <!-- Other -->
-      <div class="exp-item reveal delay-1" style="flex: 1 1 100%;">
-        <div style="font-family: 'Outfit', sans-serif; font-size: 20px; color: var(--text); margin-bottom: 12px;">Tools
-          & Concepts</div>
-        <div style="color: var(--muted); font-size: 14px;">Git, GitHub, Postman, REST APIs, CI/CD, MLOps, System Design
+
+      <!-- Additional strengths & languages + cloud exposure -->
+      <div class="card">
+        <div class="section-title">
+          <i class="fas fa-globe"></i>
+          <span>Languages & Core Strengths</span>
+        </div>
+        <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 1.2rem;">
+          <span><i class="fas fa-comment"></i> English (fluent)</span>
+          <span><i class="fas fa-comment"></i> Malayalam</span>
+          <span><i class="fas fa-comment"></i> Tamil</span>
+        </div>
+        <div class="skills-cloud" style="margin-top: 0;">
+          <span class="skill-pill">⚡ Problem-solving</span>
+          <span class="skill-pill">🚀 Fast learner</span>
+          <span class="skill-pill">🤝 Adaptability</span>
+          <span class="skill-pill">🧠 Teamwork</span>
+        </div>
+        <hr>
+        <div>
+          <div style="font-weight: 700; margin-bottom: 8px;"><i class="fab fa-google"></i> Cloud & MLOps Exposure</div>
+          <p style="font-size: 0.85rem;">Azure Fundamentals, Vertex AI project experience, CI/CD concepts, Docker/K8s basics, Model Monitoring & Data Drift awareness. Passionate about deploying scalable AI solutions with robust pipelines.</p>
         </div>
       </div>
     </div>
-  </section>
+  </div>
 
-  <!-- ADDITIONAL -->
-  <section id="additional" style="padding-top: 60px; padding-bottom: 40px;">
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px;">
-      <div class="exp-item reveal delay-1">
-        <h3 style="font-family: 'Outfit', sans-serif; font-size: 24px; margin-bottom: 16px;">🏆 Certifications</h3>
-        <ul style="margin-left: 20px; color: var(--muted); font-size: 14px; line-height: 1.8;">
-          <li>AI & Machine Learning Certifications</li>
-          <li>Azure Fundamentals</li>
-          <li>Cyber Security Training</li>
-        </ul>
+  <!-- Contact Form Row -->
+  <div class="grid-2">
+    <div class="card" style="grid-column: 1 / -1;" id="contact">
+      <div class="section-title">
+        <i class="fas fa-paper-plane"></i>
+        <span>Get in Touch</span>
       </div>
-      <div class="exp-item reveal delay-2">
-        <h3 style="font-family: 'Outfit', sans-serif; font-size: 24px; margin-bottom: 16px;">📚 Continuous Learning</h3>
-        <p
-          style="color: var(--gold); font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px;">
-          Currently exploring:</p>
-        <ul style="margin-left: 20px; color: var(--muted); font-size: 14px; line-height: 1.8;">
-          <li>Advanced MLOps pipelines</li>
-          <li>Kubernetes for ML systems</li>
-          <li>Scalable AI architecture</li>
-          <li>Multi-agent AI systems</li>
-        </ul>
-      </div>
-      <div class="exp-item reveal delay-3">
-        <h3 style="font-family: 'Outfit', sans-serif; font-size: 24px; margin-bottom: 16px;">🎯 Soft Skills</h3>
-        <ul style="margin-left: 20px; color: var(--muted); font-size: 14px; line-height: 1.8;">
-          <li>Problem-solving mindset</li>
-          <li>Analytical thinking</li>
-          <li>Team collaboration</li>
-          <li>Fast learner & Strong communication</li>
-        </ul>
-      </div>
+      <p style="color: #64748b; margin-bottom: 1.5rem; font-size: 0.95rem;">Interested in collaborating on AI or MLOps projects? My inbox is always open. Drop me a line below and I will get back to you directly from my custom Supabase backend!</p>
+      
+      <form id="contact-form" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+        <input type="text" name="name" placeholder="Your Name" required style="padding: 1rem; border-radius: 12px; border: 1px solid #cbd5e1; outline: none; font-family: 'Inter', sans-serif;">
+        <input type="email" name="email" placeholder="Email Address" required style="padding: 1rem; border-radius: 12px; border: 1px solid #cbd5e1; outline: none; font-family: 'Inter', sans-serif;">
+        <input type="text" name="phone" placeholder="Phone Number" required style="padding: 1rem; border-radius: 12px; border: 1px solid #cbd5e1; outline: none; font-family: 'Inter', sans-serif; grid-column: 1 / -1;">
+        <textarea name="message" placeholder="How can we collaborate?" rows="4" required style="padding: 1rem; border-radius: 12px; border: 1px solid #cbd5e1; outline: none; font-family: 'Inter', sans-serif; resize: none; grid-column: 1 / -1;"></textarea>
+        <button type="submit" style="grid-column: 1 / -1; background: #3b82f6; color: white; padding: 1rem; border: none; border-radius: 12px; font-weight: 700; font-family: 'Inter', sans-serif; font-size: 1rem; cursor: pointer; transition: background 0.2s;">Send Message</button>
+      </form>
     </div>
-  </section>
+  </div>
 
+  <div class="footer">
+    <i class="fas fa-code"></i> Built with precision for AI/ML portfolio | Antony Sebastian — MCA Graduate, GenAI & MLOps Enthusiast <br>
+    📍 Kerala, India | ✉️ ajoantony19@gmail.com | 📞 +91 9496940988
+  </div>
+</div>
 
-  <!-- CONTACT -->
-  <section id="contact">
-    <div class="reveal">
-      <div class="section-tag" style="margin-bottom:24px;">Reach Out</div>
-      <h2 class="contact-title">Let's Build Something<br><em>Intelligent</em> 🚀</h2>
-      <p class="contact-sub" style="max-width: 600px;">
-        Open to: AI Engineer Roles • MLOps Roles • Backend Developer Roles • Freelance AI Projects<br>
-      </p>
+<script>
+  // 1. Add your Supabase project URL and anon key here
+  const supabaseUrl = 'https://nkyddfirisydpcnnsztx.supabase.co';
+  const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5reWRkZmlyaXN5ZHBjbm5zenR4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY1MzA0MjAsImV4cCI6MjA5MjEwNjQyMH0.f-Z0VOjbH2-Cg4R_5PU1UVhgMkuKNQEMi6b6V_bGjj8';
+  const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
 
-      <div
-        style="display: flex; flex-wrap: wrap; gap: 60px; justify-content: center; align-items: stretch; max-width: 1000px; margin: 0 auto; margin-top: 40px;">
+  document.getElementById('contact-form').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const form = e.target;
+    
+    const btn = form.querySelector('button[type="submit"]');
+    const originalText = btn.innerText;
+    btn.innerText = 'Sending...';
+    
+    // Get values from form
+    const name = form.querySelector('[name="name"]').value;
+    const email = form.querySelector('[name="email"]').value;
+    const phone = form.querySelector('[name="phone"]').value;
+    const message = form.querySelector('[name="message"]').value;
+    
+    // Insert into the "contacts" table inside Supabase
+    const { data, error } = await supabase
+      .from('contacts')
+      .insert([
+        { name: name, email: email, phone: phone, message: message }
+      ]);
 
-        <!-- Contact Links -->
-        <div class="contact-links"
-          style="flex: 1; min-width: 300px; align-items: flex-start; text-align: left; justify-content: center;">
-          <a href="mailto:ajoantony19@gmail.com" class="contact-email"
-            style="font-size: clamp(20px, 3vw, 28px);">ajoantony19@gmail.com</a>
-          <a href="tel:+919496940988" class="contact-phone" style="font-size: 16px; margin: 12px 0;">+91 9496940988</a>
-          <a href="https://linkedin.com/in/antony-sebastian-363151236" class="contact-linkedin" target="_blank"
-            style="font-size: 16px;">LinkedIn | GitHub</a>
-        </div>
-
-        <!-- Contact Form -->
-        <div style="flex: 1; min-width: 300px; width: 100%;">
-          <form id="contact-form"
-            style="display: flex; flex-direction: column; gap: 20px; background: var(--dark2); padding: 40px; border-radius: 16px; border: 1px solid var(--border); text-align: left; backdrop-filter: blur(10px);">
-            <div style="display: flex; flex-direction: column; gap: 8px;">
-              <label
-                style="font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gold);">Name</label>
-              <input type="text" name="name" placeholder="Your Name" required
-                style="background: transparent; border: none; border-bottom: 1px solid var(--border); color: var(--text); padding: 8px 0; font-family: 'Inter', sans-serif; font-size: 14px; outline: none; transition: border-color 0.3s;"
-                onfocus="this.style.borderColor='var(--gold)'" onblur="this.style.borderColor='var(--border)'">
-            </div>
-            <div style="display: flex; flex-direction: column; gap: 8px;">
-              <label
-                style="font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gold);">Email</label>
-              <input type="email" name="email" placeholder="you@example.com" required
-                style="background: transparent; border: none; border-bottom: 1px solid var(--border); color: var(--text); padding: 8px 0; font-family: 'Inter', sans-serif; font-size: 14px; outline: none; transition: border-color 0.3s;"
-                onfocus="this.style.borderColor='var(--gold)'" onblur="this.style.borderColor='var(--border)'">
-            </div>
-            <div style="display: flex; flex-direction: column; gap: 8px;">
-              <label
-                style="font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gold);">Phone
-                Number</label>
-              <input type="text" name="phone" placeholder="+91 0000000000" required
-                style="background: transparent; border: none; border-bottom: 1px solid var(--border); color: var(--text); padding: 8px 0; font-family: 'Inter', sans-serif; font-size: 14px; outline: none; transition: border-color 0.3s;"
-                onfocus="this.style.borderColor='var(--gold)'" onblur="this.style.borderColor='var(--border)'">
-            </div>
-            <div style="display: flex; flex-direction: column; gap: 8px;">
-              <label
-                style="font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gold);">Message</label>
-              <textarea name="message" placeholder="How can we collaborate?" rows="3" required
-                style="background: transparent; border: none; border-bottom: 1px solid var(--border); color: var(--text); padding: 8px 0; font-family: 'Inter', sans-serif; font-size: 14px; outline: none; resize: none; transition: border-color 0.3s;"
-                onfocus="this.style.borderColor='var(--gold)'"
-                onblur="this.style.borderColor='var(--border)'"></textarea>
-            </div>
-            <button type="submit" class="btn-primary"
-              style="margin-top: 16px; align-self: flex-start; padding: 14px 40px;">Send Message</button>
-          </form>
-
-          <script>
-            // 1. Add your Supabase project URL and anon key here
-            const supabaseUrl = 'https://nkyddfirisydpcnnsztx.supabase.co';
-            const supabaseKey = 'sb_publishable_twnKbFOb8IEzgD3J77EkNA_EUGRbSzC';
-            const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
-
-            document.getElementById('contact-form').addEventListener('submit', async function (e) {
-              e.preventDefault();
-              const form = e.target;
-
-              const btn = form.querySelector('button[type="submit"]');
-              const originalText = btn.innerText;
-              btn.innerText = 'Sending...';
-
-              // Get values from form
-              const name = form.querySelector('[name="name"]').value;
-              const email = form.querySelector('[name="email"]').value;
-              const phone = form.querySelector('[name="phone"]').value;
-              const message = form.querySelector('[name="message"]').value;
-
-              // Insert into the "contacts" table inside Supabase
-              const { data, error } = await supabase
-                .from('contacts')
-                .insert([
-                  { name: name, email: email, phone: phone, message: message }
-                ]);
-
-              if (error) {
-                alert('Database Error: ' + error.message);
-              } else {
-                alert('Your message has been saved to your Supabase Database successfully!');
-                form.reset();
-              }
-
-              btn.innerText = originalText;
-            });
-          </script>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer>
-    <div class="footer-copy">© 2026 Antony Sebastian. All rights reserved.</div>
-    <div class="footer-socials">
-      <a href="https://linkedin.com/in/antony-sebastian-363151236" target="_blank">LinkedIn</a>
-      <a href="#">GitHub</a>
-    </div>
-  </footer>
-
-  <script src="./main.js"></script>
+    if (error) {
+      alert('Database Error: ' + error.message);
+    } else {
+      alert('Your message has been saved to your Supabase Database successfully!');
+      form.reset();
+    }
+    
+    btn.innerText = originalText;
+  });
+</script>
 </body>
-
 </html>
