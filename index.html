@@ -6,7 +6,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Antony Sebastian — AI & MLOps Portfolio</title>
   <link rel="stylesheet" href="./style.css">
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 
 <body>
@@ -578,11 +577,6 @@
           </form>
 
           <script>
-            // 1. Add your Supabase project URL and anon key here
-            const supabaseUrl = 'https://nkyddfirisydpcnnsztx.supabase.co';
-            const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5reWRkZmlyaXN5ZHBjbm5zenR4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY1MzA0MjAsImV4cCI6MjA5MjEwNjQyMH0.f-Z0VOjbH2-Cg4R_5PU1UVhgMkuKNQEMi6b6V_bGjj8';
-            const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
-
             document.getElementById('contact-form').addEventListener('submit', async function (e) {
               e.preventDefault();
               const form = e.target;
@@ -591,18 +585,11 @@
               const originalText = btn.innerText;
               btn.innerText = 'Sending...';
 
-              // Get values from form
+              // Get values
               const name = form.querySelector('[name="name"]').value;
               const email = form.querySelector('[name="email"]').value;
               const phone = form.querySelector('[name="phone"]').value;
               const message = form.querySelector('[name="message"]').value;
-
-              // Insert into the "contacts" table inside Supabase
-              const { data, error } = await supabase
-                .from('contacts')
-                .insert([
-                  { name: name, email: email, phone: phone, message: message }
-                ]);
 
               // Send Email via Web3Forms
               const formData = new FormData();
@@ -614,19 +601,20 @@
               formData.append("subject", `New Message from Portfolio: ${name}`);
 
               try {
-                  await fetch("https://api.web3forms.com/submit", {
+                  const response = await fetch("https://api.web3forms.com/submit", {
                       method: "POST",
                       body: formData
                   });
+                  
+                  if (response.ok) {
+                      alert('Success! Your message was sent directly to Antony.');
+                      form.reset();
+                  } else {
+                      alert('There was a problem sending your message. Please try again.');
+                  }
               } catch (e) {
                   console.error("Web3Forms error:", e);
-              }
-
-              if (error) {
-                alert('Database Error: ' + error.message);
-              } else {
-                alert('Success! Your message was saved and an email was dispatched to Antony.');
-                form.reset();
+                  alert('There was a critical error sending the message.');
               }
 
               btn.innerText = originalText;
