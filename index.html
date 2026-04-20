@@ -604,10 +604,28 @@
                   { name: name, email: email, phone: phone, message: message }
                 ]);
 
+              // Send Email via Web3Forms
+              const formData = new FormData();
+              formData.append("access_key", "441246f1-c59a-47fd-9eb5-e86f5d4ded65");
+              formData.append("name", name);
+              formData.append("email", email);
+              formData.append("phone", phone);
+              formData.append("message", message);
+              formData.append("subject", `New Message from Portfolio: ${name}`);
+
+              try {
+                  await fetch("https://api.web3forms.com/submit", {
+                      method: "POST",
+                      body: formData
+                  });
+              } catch (e) {
+                  console.error("Web3Forms error:", e);
+              }
+
               if (error) {
                 alert('Database Error: ' + error.message);
               } else {
-                alert('Your message has been saved to your Supabase Database successfully!');
+                alert('Success! Your message was saved and an email was dispatched to Antony.');
                 form.reset();
               }
 
