@@ -2,321 +2,781 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Antony Sebastian — GenAI & MLOps</title>
-  <link rel="stylesheet" href="./style.css">
-  <!-- FontAwesome for icons -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Antony Sebastian | GenAI & MLOps Engineer — Portfolio</title>
+  <!-- Google Fonts + Font Awesome -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #0B0C10;
+      color: #EFF1F3;
+      font-family: 'Inter', sans-serif;
+      overflow-x: hidden;
+      line-height: 1.5;
+      scroll-behavior: smooth;
+    }
+
+    /* custom cursor refined */
+    #cursor-dot {
+      position: fixed;
+      width: 6px;
+      height: 6px;
+      background: #F97316;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9999;
+      transition: transform 0.1s ease;
+      transform: translate(-50%, -50%);
+    }
+
+    #cursor-ring {
+      position: fixed;
+      width: 38px;
+      height: 38px;
+      border: 1.5px solid rgba(249, 115, 22, 0.6);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9998;
+      transition: width 0.2s, height 0.2s, border-color 0.2s;
+      transform: translate(-50%, -50%);
+      backdrop-filter: blur(2px);
+    }
+
+    /* interactive elements hover effect */
+    a, button, .service-card, .portfolio-card, .stat-box, .btn-primary, .btn-outline, .skill-ring-wrapper, .footer-socials a {
+      cursor: none;
+    }
+
+    /* animations & reveal classes */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s cubic-bezier(0.2, 0.9, 0.4, 1.1), transform 0.7s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-left {
+      opacity: 0;
+      transform: translateX(-40px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .reveal-left.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    .reveal-right {
+      opacity: 0;
+      transform: translateX(40px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .reveal-right.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    .scale-reveal {
+      opacity: 0;
+      transform: scale(0.94);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+    .scale-reveal.visible {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    /* layout constants */
+    :root {
+      --accent: #F97316;
+      --accent-dark: #EA580C;
+      --bg-deep: #0B0C10;
+      --card-bg: #181A1F;
+      --border-dim: #2C2F36;
+      --text-light: #F9FAFB;
+      --text-muted: #9CA3AF;
+    }
+
+    .container {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 80px 5%;
+    }
+
+    /* navbar */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 5%;
+      background: rgba(11, 12, 16, 0.85);
+      backdrop-filter: blur(12px);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 1px solid var(--border-dim);
+    }
+    .nav-logo {
+      font-size: 28px;
+      font-weight: 800;
+      background: linear-gradient(135deg, #F97316, #FFB347);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      letter-spacing: -0.5px;
+    }
+    .nav-links {
+      display: flex;
+      gap: 36px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-muted);
+      transition: 0.25s;
+      position: relative;
+    }
+    .nav-links a:hover {
+      color: var(--accent);
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      left: 0;
+      width: 0%;
+      height: 2px;
+      background: var(--accent);
+      transition: 0.3s;
+    }
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: #0B0C10;
+      padding: 10px 26px;
+      border-radius: 40px;
+      font-weight: 600;
+      transition: all 0.25s;
+      border: none;
+      font-size: 14px;
+    }
+    .btn-primary:hover {
+      background: var(--accent-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(249, 115, 22, 0.25);
+    }
+    .btn-outline {
+      background: transparent;
+      border: 1.5px solid var(--border-dim);
+      padding: 10px 26px;
+      border-radius: 40px;
+      font-weight: 500;
+      transition: 0.25s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .btn-outline:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    /* Hero section */
+    .hero {
+      display: flex;
+      align-items: center;
+      gap: 60px;
+      flex-wrap: wrap;
+      min-height: 85vh;
+    }
+    .hero-left {
+      flex: 1.2;
+    }
+    .greeting {
+      font-size: 15px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 12px;
+      font-weight: 500;
+    }
+    .name {
+      font-size: 56px;
+      font-weight: 800;
+      line-height: 1.1;
+      background: linear-gradient(to right, #FFFFFF, #D1D5DB);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 16px;
+    }
+    .title {
+      font-size: 42px;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 24px;
+    }
+    .social-icons {
+      display: flex;
+      gap: 20px;
+      margin: 28px 0;
+    }
+    .social-icons a {
+      background: var(--card-bg);
+      width: 44px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      color: var(--text-muted);
+      font-size: 20px;
+      transition: 0.25s;
+      border: 1px solid var(--border-dim);
+    }
+    .social-icons a:hover {
+      background: var(--accent);
+      color: #0B0C10;
+      transform: translateY(-4px);
+    }
+    .hero-stats {
+      display: flex;
+      gap: 24px;
+      margin-top: 40px;
+    }
+    .stat-box {
+      background: var(--card-bg);
+      padding: 18px 24px;
+      border-radius: 24px;
+      text-align: center;
+      border: 1px solid var(--border-dim);
+      transition: 0.2s;
+    }
+    .stat-box:hover {
+      border-color: var(--accent);
+    }
+    .stat-box h3 {
+      font-size: 32px;
+      font-weight: 800;
+      color: var(--accent);
+    }
+    .hero-right {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+    }
+    .hero-image-wrapper {
+      width: 380px;
+      height: 380px;
+      background: linear-gradient(145deg, #F9731622, #EA580C22);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      animation: float 5s ease-in-out infinite;
+    }
+    .hero-image-wrapper img {
+      width: 92%;
+      height: 92%;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 3px solid var(--accent);
+      filter: grayscale(15%) contrast(1.05);
+    }
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-12px); }
+      100% { transform: translateY(0px); }
+    }
+
+    /* section titles */
+    .section-title {
+      font-size: 40px;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 14px;
+      letter-spacing: -0.5px;
+    }
+    .section-subtitle {
+      text-align: center;
+      color: var(--text-muted);
+      max-width: 560px;
+      margin: 0 auto 48px auto;
+      font-size: 16px;
+    }
+
+    /* services grid */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+      gap: 28px;
+    }
+    .service-card {
+      background: var(--card-bg);
+      padding: 32px 24px;
+      border-radius: 28px;
+      border: 1px solid var(--border-dim);
+      transition: all 0.3s;
+      backdrop-filter: blur(4px);
+    }
+    .service-card:hover {
+      transform: translateY(-8px);
+      border-color: var(--accent);
+      box-shadow: 0 20px 30px -12px rgba(0,0,0,0.4);
+    }
+    .service-icon {
+      font-size: 44px;
+      color: var(--accent);
+      margin-bottom: 24px;
+    }
+    .service-card h4 {
+      font-size: 22px;
+      margin-bottom: 12px;
+    }
+    .service-card p {
+      color: var(--text-muted);
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    /* about + rings */
+    .about-flex {
+      display: flex;
+      gap: 50px;
+      align-items: center;
+      flex-wrap: wrap;
+      margin: 60px 0;
+    }
+    .about-img {
+      flex: 1;
+      min-width: 260px;
+    }
+    .about-img img {
+      width: 100%;
+      border-radius: 32px;
+      border: 1px solid var(--border-dim);
+      filter: grayscale(10%);
+      transition: 0.3s;
+    }
+    .about-content {
+      flex: 1.2;
+    }
+    .skill-ring-group {
+      display: flex;
+      gap: 32px;
+      margin-top: 36px;
+      flex-wrap: wrap;
+    }
+    .skill-ring-wrapper {
+      text-align: center;
+    }
+    .skill-ring {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      margin-bottom: 12px;
+      transition: transform 0.2s;
+    }
+    .skill-ring i {
+      font-size: 32px;
+      color: var(--text-light);
+      z-index: 2;
+      background: #181A1F;
+      width: 70px;
+      height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+    }
+    .ring-100 { background: conic-gradient(var(--accent) 0deg 360deg, #2C2F36 360deg); }
+    .ring-85 { background: conic-gradient(var(--accent) 0deg 306deg, #2C2F36 306deg); }
+    .ring-70 { background: conic-gradient(var(--accent) 0deg 252deg, #2C2F36 252deg); }
+    .skill-ring-wrapper h5 {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--accent);
+      margin-top: 6px;
+    }
+
+    /* portfolio filter + grid */
+    .filter-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      margin-bottom: 48px;
+      flex-wrap: wrap;
+    }
+    .filter-btn {
+      background: transparent;
+      border: 1px solid var(--border-dim);
+      padding: 8px 28px;
+      border-radius: 60px;
+      color: var(--text-muted);
+      font-weight: 500;
+      transition: 0.2s;
+    }
+    .filter-btn.active, .filter-btn:hover {
+      background: var(--accent);
+      color: #0B0C10;
+      border-color: var(--accent);
+    }
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 28px;
+    }
+    .portfolio-card {
+      background: var(--card-bg);
+      border-radius: 24px;
+      overflow: hidden;
+      border: 1px solid var(--border-dim);
+      transition: all 0.3s;
+    }
+    .portfolio-card:hover {
+      transform: scale(1.02);
+      border-color: var(--accent);
+    }
+    .portfolio-img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      transition: 0.3s;
+    }
+    .portfolio-info {
+      padding: 18px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .portfolio-info h4 {
+      font-weight: 600;
+    }
+    .portfolio-info p {
+      color: var(--accent);
+      font-size: 12px;
+      font-weight: 500;
+    }
+
+    /* contact form */
+    .contact-form {
+      max-width: 780px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 22px;
+    }
+    .contact-form input, .contact-form select, .contact-form textarea {
+      background: var(--card-bg);
+      border: 1px solid var(--border-dim);
+      padding: 16px 20px;
+      border-radius: 20px;
+      color: var(--text-light);
+      font-family: inherit;
+      outline: none;
+      transition: 0.2s;
+    }
+    .contact-form input:focus, .contact-form select:focus, .contact-form textarea:focus {
+      border-color: var(--accent);
+    }
+    .contact-form textarea {
+      grid-column: span 2;
+      resize: vertical;
+      min-height: 130px;
+    }
+    .contact-form button {
+      grid-column: span 2;
+      width: fit-content;
+      justify-self: center;
+      padding: 12px 48px;
+      background: var(--accent);
+      border: none;
+      font-weight: 600;
+      border-radius: 40px;
+      color: #0B0C10;
+    }
+
+    /* popup */
+    .popup-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.85);
+      backdrop-filter: blur(8px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 10000;
+      visibility: hidden;
+      opacity: 0;
+      transition: 0.2s;
+    }
+    .popup-card {
+      background: var(--card-bg);
+      border: 1px solid var(--accent);
+      padding: 40px 48px;
+      border-radius: 40px;
+      text-align: center;
+      max-width: 380px;
+      transform: scale(0.9);
+      transition: 0.25s;
+    }
+
+    footer {
+      background: #07080C;
+      margin-top: 70px;
+      padding: 48px 5% 32px;
+      border-top: 1px solid var(--border-dim);
+      text-align: center;
+    }
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 36px;
+      margin: 24px 0;
+      flex-wrap: wrap;
+    }
+    .footer-links a {
+      color: var(--text-muted);
+      font-size: 14px;
+    }
+    .footer-contact-info {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      color: var(--text-muted);
+      font-size: 13px;
+      margin-top: 20px;
+    }
+
+    @media (max-width: 800px) {
+      .nav-links { display: none; }
+      .hero-left .name { font-size: 40px; }
+      .title { font-size: 32px; }
+      .contact-form { grid-template-columns: 1fr; }
+      .contact-form textarea { grid-column: span 1; }
+      .contact-form button { grid-column: span 1; }
+      .hero-image-wrapper { width: 280px; height: 280px; }
+    }
+  </style>
 </head>
 <body>
-
-  <!-- Custom Cursor -->
-  <div id="cursor"></div>
+  <div id="cursor-dot"></div>
   <div id="cursor-ring"></div>
 
-  <!-- NAVBAR -->
   <nav>
     <div class="nav-logo">AS</div>
     <ul class="nav-links">
       <li><a href="#home">Home</a></li>
       <li><a href="#services">Services</a></li>
-      <li><a href="#about">About me</a></li>
+      <li><a href="#about">About</a></li>
       <li><a href="#portfolio">Portfolio</a></li>
-      <li><a href="#contact">Contact me</a></li>
+      <li><a href="#contact">Contact</a></li>
     </ul>
     <a href="#contact" class="btn-primary">Hire Me</a>
   </nav>
 
-  <!-- HERO -->
   <section id="home" class="container hero">
-    <div class="hero-left">
-      <div class="greeting">Hi I am</div>
+    <div class="hero-left reveal-left">
+      <div class="greeting">Hi, I'm</div>
       <div class="name">Antony Sebastian</div>
-      <div class="title">GenAI & MLOps Engineer</div>
-      
+      <div class="title">GenAI & MLOps<br>Engineer</div>
       <div class="social-icons">
-        <a href="#"><i class="fas fa-desktop"></i></a>
         <a href="https://linkedin.com/in/antony-sebastian-363151236" target="_blank"><i class="fab fa-linkedin-in"></i></a>
         <a href="https://github.com/Ajo-Antony" target="_blank"><i class="fab fa-github"></i></a>
         <a href="mailto:ajoantony19@gmail.com"><i class="fas fa-envelope"></i></a>
+        <a href="#"><i class="fas fa-desktop"></i></a>
       </div>
-
-      <div style="display: flex; gap: 15px; margin-bottom: 30px;">
+      <div style="display: flex; gap: 16px; flex-wrap: wrap;">
         <a href="#contact" class="btn-primary">Hire Me</a>
-        <a href="#about" class="btn-outline">Download CV</a>
+        <a href="#" class="btn-outline" id="download-cv"><i class="fas fa-download"></i> Download CV</a>
       </div>
-
       <div class="hero-stats">
-        <div class="stat-box">
-          <h3>3+</h3>
-          <p>Internships</p>
-        </div>
-        <div class="stat-box">
-          <h3>6+</h3>
-          <p>Project done</p>
-        </div>
-        <div class="stat-box">
-          <h3>10+</h3>
-          <p>Certifications</p>
-        </div>
+        <div class="stat-box"><h3>3+</h3><p>Internships</p></div>
+        <div class="stat-box"><h3>6+</h3><p>Projects</p></div>
+        <div class="stat-box"><h3>10+</h3><p>Certifications</p></div>
       </div>
     </div>
-    <div class="hero-right">
+    <div class="hero-right reveal-right">
       <div class="hero-image-wrapper">
         <img src="./assets/profile.jpg" alt="Antony Sebastian">
       </div>
     </div>
   </section>
 
-  <!-- SERVICES -->
   <section id="services" class="container">
-    <h2 class="section-title">Services</h2>
-    <p class="section-subtitle">Scalable AI architectures, robust MLOps pipelines, and state-of-the-art Generative AI applications.</p>
-    
+    <h2 class="section-title reveal">Services</h2>
+    <p class="section-subtitle reveal">Scalable AI architectures, robust MLOps pipelines, and state-of-the-art Generative AI applications.</p>
     <div class="services-grid">
-      <div class="service-card">
-        <i class="fas fa-brain service-icon"></i>
-        <h4>Generative AI</h4>
-        <p>Cohere API integration, prompt engineering, Retrieval-Augmented Generation (RAG), and vector databases for autonomous intelligence.</p>
-      </div>
-      <div class="service-card">
-        <i class="fas fa-robot service-icon"></i>
-        <h4>Machine Learning</h4>
-        <p>End-to-end predictive modeling, classification, natural language processing, and medical diagnostic algorithms.</p>
-      </div>
-      <div class="service-card">
-        <i class="fas fa-cogs service-icon"></i>
-        <h4>MLOps & Deployment</h4>
-        <p>Flask/FastAPI model serving, CI/CD methodology, data drift monitoring, and seamless cloud integrations.</p>
-      </div>
-      <div class="service-card">
-        <i class="fas fa-code service-icon"></i>
-        <h4>Backend Engineering</h4>
-        <p>Designing secure, highly scalable Python architectures, API integrations, and robust database management.</p>
-      </div>
-      <div class="service-card">
-        <i class="fas fa-cloud service-icon"></i>
-        <h4>Cloud Platforms</h4>
-        <p>Deployment and orchestration across Microsoft Azure and Google Vertex AI ecosystems.</p>
-      </div>
-      <div class="service-card">
-        <i class="fas fa-shield-alt service-icon"></i>
-        <h4>Secure Applications</h4>
-        <p>Implementing security fundamentals, vulnerability assessment principles, and robust authentication handlers.</p>
-      </div>
+      <div class="service-card scale-reveal"><i class="fas fa-brain service-icon"></i><h4>Generative AI</h4><p>RAG pipelines, vector DBs, prompt engineering & LLM integrations (Cohere, OpenAI).</p></div>
+      <div class="service-card scale-reveal"><i class="fas fa-robot service-icon"></i><h4>Machine Learning</h4><p>Predictive modeling, NLP, medical diagnostics & end-to-end ML solutions.</p></div>
+      <div class="service-card scale-reveal"><i class="fas fa-cogs service-icon"></i><h4>MLOps & Deployment</h4><p>CI/CD, model monitoring, FastAPI/Flask serving, drift detection.</p></div>
+      <div class="service-card scale-reveal"><i class="fas fa-code service-icon"></i><h4>Backend Engineering</h4><p>Secure Python backends, REST APIs, scalable microservices.</p></div>
+      <div class="service-card scale-reveal"><i class="fas fa-cloud service-icon"></i><h4>Cloud Platforms</h4><p>Azure AI, Google Vertex AI, and cloud orchestration.</p></div>
+      <div class="service-card scale-reveal"><i class="fas fa-shield-alt service-icon"></i><h4>Secure Applications</h4><p>Authentication, vulnerability assessment, robust data protection.</p></div>
     </div>
   </section>
 
-  <!-- SKILLS / ABOUT ME -->
-  <section id="about" class="container" style="display: flex; gap: 50px; align-items: center; margin-top: 50px; flex-wrap: wrap;">
-    <div style="flex: 1; text-align: center; min-width: 300px;">
-      <img src="./assets/about.jpg" alt="About Antony" style="width: 100%; border-radius: 20px; border: 2px solid var(--border); filter: grayscale(20%);">
-    </div>
-    <div style="flex: 1; min-width: 300px;">
-      <h2 style="font-size: 32px; margin-bottom: 20px;">About Me</h2>
-      <p style="color: var(--muted); font-size: 14px; margin-bottom: 20px;">MCA graduate specializing in Generative AI and MLOps, with hands-on experience building, deploying, and monitoring ML applications.</p>
-      <p style="color: var(--muted); font-size: 14px; margin-bottom: 30px;">I possess a strong foundation in Python, ML pipelines, REST APIs, and GenAI systems using cloud-based AI platforms. Passionate about scalable AI deployment, CI/CD concepts, and continuous learning in Azure and Vertex AI ecosystems.</p>
-      
-      <!-- Skill Rings replicating Figma top section -->
-      <div style="display: flex; gap: 20px; justify-content: flex-start;">
-        <div class="skill-ring-wrapper">
-          <div class="skill-ring ring-100">
-            <i class="fab fa-python icon"></i>
-          </div>
-          <h5>100%</h5>
-          <p>Python</p>
-        </div>
-        <div class="skill-ring-wrapper">
-          <div class="skill-ring ring-85">
-            <i class="fas fa-database icon"></i>
-          </div>
-          <h5>85%</h5>
-          <p>SQL / MySQL</p>
-        </div>
-        <div class="skill-ring-wrapper">
-          <div class="skill-ring ring-70">
-            <i class="fab fa-microsoft icon"></i>
-          </div>
-          <h5>70%</h5>
-          <p>Azure</p>
+  <section id="about" class="container">
+    <div class="about-flex">
+      <div class="about-img reveal-left">
+        <img src="./assets/about.jpg" alt="About me">
+      </div>
+      <div class="about-content reveal-right">
+        <h2 class="section-title" style="text-align:left; font-size:38px;">About Me</h2>
+        <p style="color: var(--text-muted); margin-bottom: 20px;">MCA graduate specializing in Generative AI and MLOps, with hands-on expertise in building, deploying, and monitoring production-grade ML systems.</p>
+        <p style="color: var(--text-muted); margin-bottom: 24px;">Strong background in Python, ML pipelines, REST APIs, and GenAI frameworks. I thrive on scalable AI deployment, CI/CD best practices, and continuous innovation within Azure and Vertex AI ecosystems.</p>
+        <div class="skill-ring-group">
+          <div class="skill-ring-wrapper"><div class="skill-ring ring-100"><i class="fab fa-python"></i></div><h5>100%</h5><p>Python</p></div>
+          <div class="skill-ring-wrapper"><div class="skill-ring ring-85"><i class="fas fa-database"></i></div><h5>85%</h5><p>SQL / MySQL</p></div>
+          <div class="skill-ring-wrapper"><div class="skill-ring ring-70"><i class="fab fa-microsoft"></i></div><h5>70%</h5><p>Azure</p></div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- PORTFOLIO -->
-  <section id="portfolio" class="container portfolio">
-    <h2 class="section-title">Portfolio</h2>
-    <!-- Figma Filter Buttons -->
-    <div style="display: flex; justify-content: center; gap: 10px; margin-bottom: 40px; margin-top: 20px; flex-wrap: wrap;">
-      <button class="btn-primary" style="padding: 8px 30px;">All</button>
-      <button class="btn-outline" style="padding: 8px 20px; border-color: var(--border);">GenAI</button>
-      <button class="btn-outline" style="padding: 8px 20px; border-color: var(--border);">MLOps</button>
-      <button class="btn-outline" style="padding: 8px 20px; border-color: var(--border);">Backend</button>
+  <section id="portfolio" class="container">
+    <h2 class="section-title reveal">Portfolio</h2>
+    <div class="filter-buttons reveal">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="genai">GenAI</button>
+      <button class="filter-btn" data-filter="mlops">MLOps</button>
+      <button class="filter-btn" data-filter="backend">Backend</button>
     </div>
-
-    <div class="portfolio-grid">
-      <div class="portfolio-card">
-        <img src="./assets/project1.jpg" alt="SmartHire" class="portfolio-img">
-        <div class="portfolio-info">
-          <h4>SmartHire Platform</h4>
-          <p>GenAI</p>
-        </div>
-      </div>
-      <div class="portfolio-card">
-        <img src="./assets/project2.jpg" alt="CareGuides ML" class="portfolio-img">
-        <div class="portfolio-info">
-          <h4>CareGuides ML</h4>
-          <p>MLOps</p>
-        </div>
-      </div>
-      <div class="portfolio-card">
-        <img src="./assets/project3.jpg" alt="RizzBot Chatbot" class="portfolio-img">
-        <div class="portfolio-info">
-          <h4>RizzBot Chatbot</h4>
-          <p>GenAI</p>
-        </div>
-      </div>
-      <div class="portfolio-card">
-        <img src="./assets/project4.jpg" alt="Ezy Parking" class="portfolio-img">
-        <div class="portfolio-info">
-          <h4>Ezy Parking System</h4>
-          <p>Backend / DB</p>
-        </div>
-      </div>
+    <div class="portfolio-grid" id="portfolio-grid">
+      <!-- data category mapping -->
+      <div class="portfolio-card" data-cat="genai"><img class="portfolio-img" src="./assets/project1.jpg" alt="SmartHire"><div class="portfolio-info"><h4>SmartHire Platform</h4><p>GenAI</p></div></div>
+      <div class="portfolio-card" data-cat="mlops"><img class="portfolio-img" src="./assets/project2.jpg" alt="CareGuides"><div class="portfolio-info"><h4>CareGuides ML</h4><p>MLOps</p></div></div>
+      <div class="portfolio-card" data-cat="genai"><img class="portfolio-img" src="./assets/project3.jpg" alt="RizzBot"><div class="portfolio-info"><h4>RizzBot Chatbot</h4><p>GenAI</p></div></div>
+      <div class="portfolio-card" data-cat="backend"><img class="portfolio-img" src="./assets/project4.jpg" alt="EzyParking"><div class="portfolio-info"><h4>Ezy Parking System</h4><p>Backend</p></div></div>
     </div>
   </section>
 
-  <!-- CONTACT -->
-  <section id="contact" class="container contact-container">
-    <h2 class="section-title">Contact me</h2>
-    <p class="section-subtitle" style="margin-bottom: 30px;">Cultivating Connections: Reach Out And Connect With Me</p>
-
+  <section id="contact" class="container">
+    <h2 class="section-title reveal">Contact me</h2>
+    <p class="section-subtitle reveal">Cultivating Connections — Let's build intelligent systems together</p>
     <form id="contact-form" class="contact-form">
-      <input type="text" name="name" placeholder="Name" required>
-      <input type="email" name="email" placeholder="Email" required>
-      <input type="text" name="phone" placeholder="Phone Number" required>
-      <select name="service" style="color: var(--muted);" required>
+      <input type="text" name="name" placeholder="Full Name" required>
+      <input type="email" name="email" placeholder="Email Address" required>
+      <input type="tel" name="phone" placeholder="Phone Number" required>
+      <select name="service" required>
         <option value="" disabled selected>Service Of Interest</option>
         <option value="Generative AI">Generative AI</option>
         <option value="MLOps">MLOps / Deployment</option>
         <option value="Backend">Backend API</option>
-        <option value="Other">Other</option>
       </select>
-      <textarea name="message" placeholder="Project Details..." required></textarea>
-      <button type="submit" class="btn-outline btn-submit" style="color: #fff;">Send</button>
+      <textarea name="message" placeholder="Project details / Message..." required></textarea>
+      <button type="submit" class="btn-primary">Send Message</button>
     </form>
-    
-    <!-- Custom Animated Popup Container -->
-    <div id="success-popup" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); backdrop-filter: blur(6px); z-index: 9999; justify-content: center; align-items: center; opacity: 0; transition: opacity 0.3s ease;">
-      <div style="background: var(--card-bg); border: 1px solid var(--border); padding: 40px; border-radius: 20px; text-align: center; max-width: 400px; transform: scale(0.9); transition: transform 0.3s ease;" id="popup-content">
-        <div style="font-size: 50px; margin-bottom: 20px;">✅</div>
-        <h3 style="font-size: 26px; color: var(--accent); margin-bottom: 12px;">Thank You!</h3>
-        <p style="color: var(--muted); font-size: 15px; margin-bottom: 24px;">We will contact you shortly through the given contact details.</p>
-        <button type="button" onclick="closePopup()" class="btn-primary">Awesome</button>
-      </div>
-    </div>
+    <div id="popup" class="popup-overlay"><div class="popup-card"><i class="fas fa-check-circle" style="font-size: 54px; color: #F97316; margin-bottom: 16px;"></i><h3>Thank You!</h3><p style="margin: 15px 0;">We'll contact you shortly via your provided details.</p><button id="closePopupBtn" class="btn-primary" style="margin-top: 12px;">Awesome</button></div></div>
   </section>
 
-  <!-- FOOTER -->
   <footer>
-    <div class="footer-logo">LOGO</div>
-    <div class="footer-nav">
-      <a href="#home">Home</a>
-      <a href="#services">Services</a>
-      <a href="#about">About me</a>
-      <a href="#portfolio">Portfolio</a>
-      <a href="#contact">Contact me</a>
-    </div>
-    <div class="footer-socials">
-      <a href="#"><i class="fab fa-instagram"></i></a>
+    <div class="nav-logo" style="font-size: 32px;">AS</div>
+    <div class="footer-links"><a href="#home">Home</a><a href="#services">Services</a><a href="#about">About</a><a href="#portfolio">Portfolio</a><a href="#contact">Contact</a></div>
+    <div class="footer-socials" style="display: flex; justify-content: center; gap: 20px; margin-bottom: 24px;">
       <a href="https://linkedin.com/in/antony-sebastian-363151236" target="_blank"><i class="fab fa-linkedin-in"></i></a>
       <a href="https://github.com/Ajo-Antony" target="_blank"><i class="fab fa-github"></i></a>
-      <a href="#"><i class="fab fa-behance"></i></a>
+      <a href="#"><i class="fab fa-instagram"></i></a>
     </div>
-    <div class="footer-contact">
-      <span><i class="fas fa-envelope"></i> ajoantony19@gmail.com</span>
-      <span><i class="fas fa-phone-alt"></i> +91 9496940988</span>
-    </div>
+    <div class="footer-contact-info"><span><i class="fas fa-envelope"></i> ajoantony19@gmail.com</span><span><i class="fas fa-phone-alt"></i> +91 9496940988</span></div>
+    <p style="color:#4b5563; font-size:12px; margin-top:32px;">© 2025 Antony Sebastian — AI Innovation</p>
   </footer>
 
-  <!-- Contact Form Logic -->
   <script>
-    document.getElementById('contact-form').addEventListener('submit', async function (e) {
+    // Cursor logic
+    const dot = document.getElementById('cursor-dot');
+    const ring = document.getElementById('cursor-ring');
+    let mouseX = 0, mouseY = 0, ringX = 0, ringY = 0;
+
+    document.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+      dot.style.left = mouseX + 'px';
+      dot.style.top = mouseY + 'px';
+    });
+    function animateRing() {
+      ringX += (mouseX - ringX) * 0.12;
+      ringY += (mouseY - ringY) * 0.12;
+      ring.style.left = ringX + 'px';
+      ring.style.top = ringY + 'px';
+      requestAnimationFrame(animateRing);
+    }
+    animateRing();
+    const interactive = document.querySelectorAll('a, button, .service-card, .portfolio-card, .stat-box, .btn-primary, .filter-btn');
+    interactive.forEach(el => {
+      el.addEventListener('mouseenter', () => { dot.style.width = '12px'; dot.style.height = '12px'; ring.style.width = '56px'; ring.style.height = '56px'; ring.style.borderColor = '#F97316'; });
+      el.addEventListener('mouseleave', () => { dot.style.width = '6px'; dot.style.height = '6px'; ring.style.width = '38px'; ring.style.height = '38px'; ring.style.borderColor = 'rgba(249, 115, 22, 0.6)'; });
+    });
+
+    // Intersection Observer for animations
+    const revealElements = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .scale-reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+    }, { threshold: 0.15, rootMargin: "0px 0px -30px 0px" });
+    revealElements.forEach(el => observer.observe(el));
+
+    // Portfolio filtering
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const portfolioCards = document.querySelectorAll('.portfolio-card');
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const filterVal = btn.getAttribute('data-filter');
+        portfolioCards.forEach(card => {
+          if (filterVal === 'all') card.style.display = 'block';
+          else if (card.getAttribute('data-cat') === filterVal) card.style.display = 'block';
+          else card.style.display = 'none';
+        });
+      });
+    });
+
+    // contact form + web3forms simulation (real submission)
+    const form = document.getElementById('contact-form');
+    const popup = document.getElementById('popup');
+    const closePopup = () => { popup.style.visibility = 'hidden'; popup.style.opacity = '0'; };
+    document.getElementById('closePopupBtn').addEventListener('click', closePopup);
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
-      const form = e.target;
-
-      const btn = form.querySelector('button[type="submit"]');
-      const originalText = btn.innerText;
+      const btn = form.querySelector('button');
+      const original = btn.innerText;
       btn.innerText = 'Sending...';
-
-      // Get values
-      const name = form.querySelector('[name="name"]').value;
-      const email = form.querySelector('[name="email"]').value;
-      const phone = form.querySelector('[name="phone"]').value;
-      const service = form.querySelector('[name="service"]').value;
-      const message = form.querySelector('[name="message"]').value;
-
-      // Send Email via Web3Forms
-      const formData = new FormData();
+      const formData = new FormData(form);
       formData.append("access_key", "441246f1-c59a-47fd-9eb5-e86f5d4ded65");
-      formData.append("name", name);
-      formData.append("email", email);
-      formData.append("phone", phone);
-      formData.append("service", service);
-      formData.append("message", message);
-      formData.append("subject", `New Message via Portfolio (${service}): ${name}`);
-
       try {
-          const response = await fetch("https://api.web3forms.com/submit", {
-              method: "POST",
-              body: formData
-          });
-          
-          if (response.ok) {
-              showPopup();
-              form.reset();
-              // reset select color
-              form.querySelector('[name="service"]').style.color = "var(--muted)";
-          } else {
-              alert('There was a problem sending your message. Please try again.');
-          }
-      } catch (e) {
-          console.error("Web3Forms error:", e);
-          alert('There was a critical error sending the message.');
-      }
-
-      btn.innerText = originalText;
+        const res = await fetch("https://api.web3forms.com/submit", { method: "POST", body: formData });
+        if (res.ok) {
+          popup.style.visibility = 'visible';
+          popup.style.opacity = '1';
+          form.reset();
+        } else alert("Submission error, please try again.");
+      } catch (err) { alert("Network error. Please try again."); }
+      btn.innerText = original;
     });
 
-    // Handle initial placeholder-like color for select
-    const serviceSelect = document.querySelector('select[name="service"]');
-    serviceSelect.addEventListener('change', function() {
-      this.style.color = "var(--text)";
+    // download cv placeholder
+    document.getElementById('download-cv').addEventListener('click', (e) => {
+      e.preventDefault();
+      alert("CV download would be available — Antony Sebastian's professional resume (PDF).");
     });
-
-    // Popup Animation Logic
-    function showPopup() {
-      const popup = document.getElementById('success-popup');
-      const content = document.getElementById('popup-content');
-      popup.style.display = 'flex';
-      setTimeout(() => {
-        popup.style.opacity = '1';
-        content.style.transform = 'scale(1)';
-      }, 10);
-    }
-
-    function closePopup() {
-      const popup = document.getElementById('success-popup');
-      const content = document.getElementById('popup-content');
-      popup.style.opacity = '0';
-      content.style.transform = 'scale(0.9)';
-      setTimeout(() => {
-        popup.style.display = 'none';
-      }, 300);
-    }
   </script>
-
-  <script src="./main.js"></script>
 </body>
 </html>
