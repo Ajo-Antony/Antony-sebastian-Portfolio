@@ -8,6 +8,7 @@ const issuerColors = {
   'WorldQuant University': '#6ee7b7',
   'freeCodeCamp': '#0A0A23',
   'PMI': '#2C6FAC',
+  'Google': '#4285F4',
 };
 
 function CertCard({ cert, index }) {
@@ -28,7 +29,15 @@ function CertCard({ cert, index }) {
       </div>
       <div>
         <p style={{ fontSize: '11px', fontFamily: 'var(--font-head)', fontWeight: 600, color: color, marginBottom: '3px', letterSpacing: '0.3px' }}>{cert.issuer}</p>
-        <p style={{ fontSize: '13px', color: 'var(--text)', lineHeight: 1.4 }}>{cert.title}</p>
+        {cert.link ? (
+          <a href={cert.link} target="_blank" rel="noreferrer"
+            style={{ fontSize: '13px', color: 'var(--text)', lineHeight: 1.4, textDecoration: 'none', transition: 'color 0.2s' }}
+            onMouseEnter={e => e.target.style.color = 'var(--accent)'}
+            onMouseLeave={e => e.target.style.color = 'var(--text)'}
+          >{cert.title} ↗</a>
+        ) : (
+          <p style={{ fontSize: '13px', color: 'var(--text)', lineHeight: 1.4 }}>{cert.title}</p>
+        )}
       </div>
     </div>
   );

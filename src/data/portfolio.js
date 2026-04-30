@@ -168,6 +168,14 @@ export const skills = [
 // CERTIFICATIONS — Add new certs here
 // ============================================================
 export const certifications = [
+
+  { 
+    issuer: "Google", 
+    title: "Business Intelligence", 
+    link: "https://www.coursera.org/account/accomplishments/specialization/827YHS8POEJ6" 
+  },
+  // ... rest of your existing certifications
+
   { issuer: "Amazon Web Services", title: "Generative AI and AI Agents with Amazon Bedrock" },
   { issuer: "Amazon Web Services", title: "Amazon Bedrock Customization, Optimization & Automation" },
   { issuer: "IBM", title: "Advanced RAG with Vector Databases and Retrievers" },
