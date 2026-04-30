@@ -103,6 +103,17 @@ export const projects = [
     live: "",
     featured: false,
   },
+  {
+    id: 5,
+    title: "Respire Scan",
+    subtitle: "AI-powered Chest X-Ray Multi-Disease Detection System",
+    tags: ["Python", "Flask", "TensorFlow", "PHP", "MySQL", "REST API"],
+    description:
+      "Multi-class CNN classifier trained on medical imaging data. Full-stack implementation with secure user roles (Admin/Doctor/Patient), confidence scoring, scan history tracking, and printable medical reports.",
+    github: "",  // ← Add your GitHub link if you have one
+    live: "",    // ← Add live demo link if any
+    featured: true,
+  },
 ];
 
 // ============================================================
