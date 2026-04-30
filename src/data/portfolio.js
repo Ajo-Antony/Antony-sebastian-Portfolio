@@ -71,6 +71,17 @@ export const projects = [
     featured: true,
   },
   {
+    id: 7,
+    title: "Spice Caterings",
+    subtitle: "Full-Stack Food Ordering & Catering Platform",
+    tags: ["Python", "Flask", "SQLAlchemy", "MySQL", "Bootstrap", "JavaScript", "Chart.js", "REST API"],
+    description:
+      "End-to-end restaurant management system with multi-role portals (Admin/Customer). Features dynamic menu management, surplus deal system with automatic notifications, nutritional information display, real-time order tracking, table reservations, and customer review moderation.",
+    github: "",
+    live: "",
+    featured: false,
+  },
+  {
     id: 1,
     title: "CareGuides",
     subtitle: "ML-based Autism Diagnosis & Therapy Recommendation",
