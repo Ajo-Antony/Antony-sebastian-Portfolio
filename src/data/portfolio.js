@@ -141,6 +141,32 @@ export const projects = [
 // ============================================================
 // SKILLS — Add / remove skills here
 // ============================================================
+export const skills = [
+  {
+    category: "AI & Machine Learning",
+    items: ["Python", "Machine Learning", "Deep Learning", "NLP", "Generative AI"],
+  },
+  {
+    category: "GenAI Tools",
+    items: ["Cohere API", "Prompt Engineering", "Embeddings", "Vector Search", "RAG"],
+  },
+  {
+    category: "MLOps & DevOps",
+    items: ["Model Deployment", "Docker (basics)", "Kubernetes (basics)", "CI/CD", "Data Drift"],
+  },
+  {
+    category: "Cloud & Frameworks",
+    items: ["Azure Fundamentals", "Vertex AI", "Flask", "FastAPI", "Streamlit"],
+  },
+  {
+    category: "Databases",
+    items: ["MySQL", "SQL", "Vector Databases"],
+  },
+];
+
+// ============================================================
+// CERTIFICATIONS — Add new certs here
+// ============================================================
 export const certifications = [
   {
     issuer: "Google",
@@ -267,34 +293,6 @@ export const certifications = [
     title: "Technology Management Development Programme",
     link: "",
   },
-];
-
-// ============================================================
-// CERTIFICATIONS — Add new certs here
-// ============================================================
-export const certifications = [
-
-  { 
-    issuer: "Google", 
-    title: "Business Intelligence", 
-    link: "https://www.coursera.org/account/accomplishments/specialization/827YHS8POEJ6" 
-  },
-  // ... rest of your existing certifications
-
-  { issuer: "Amazon Web Services", title: "Generative AI and AI Agents with Amazon Bedrock" },
-  { issuer: "Amazon Web Services", title: "Amazon Bedrock Customization, Optimization & Automation" },
-  { issuer: "IBM", title: "Advanced RAG with Vector Databases and Retrievers" },
-  { issuer: "IBM", title: "Vector Databases for RAG" },
-  { issuer: "IBM", title: "Build RAG Applications" },
-  { issuer: "IBM", title: "Develop Generative AI Applications" },
-  { issuer: "IBM", title: "Generative AI: Prompt Engineering" },
-  { issuer: "IBM", title: "Generative AI: Introduction and Applications" },
-  { issuer: "IBM", title: "Python for Data Science, AI & Development" },
-  { issuer: "IBM", title: "Introduction to Software Engineering" },
-  { issuer: "Anthropic", title: "AI Fluency: Framework Foundations" },
-  { issuer: "WorldQuant University", title: "Applied AI Lab: Deep Learning for Computer Vision" },
-  { issuer: "freeCodeCamp", title: "Machine Learning with Python" },
-  { issuer: "PMI", title: "Fundamentals of Agile Project Management" },
 ];
 
 // ============================================================
