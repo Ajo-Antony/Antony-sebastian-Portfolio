@@ -141,26 +141,131 @@ export const projects = [
 // ============================================================
 // SKILLS — Add / remove skills here
 // ============================================================
-export const skills = [
+export const certifications = [
   {
-    category: "AI & Machine Learning",
-    items: ["Python", "Machine Learning", "Deep Learning", "NLP", "Generative AI"],
+    issuer: "Google",
+    title: "Business Intelligence",
+    link: "https://www.coursera.org/account/accomplishments/specialization/827YHS8POEJ6",
   },
   {
-    category: "GenAI Tools",
-    items: ["Cohere API", "Prompt Engineering", "Embeddings", "Vector Search", "RAG"],
+    issuer: "Google",
+    title: "Cloud Digital Leader Training",
+    link: "https://www.coursera.org/account/accomplishments/specialization/ULHCJLEVX413",
   },
   {
-    category: "MLOps & DevOps",
-    items: ["Model Deployment", "Docker (basics)", "Kubernetes (basics)", "CI/CD", "Data Drift"],
+    issuer: "Amazon Web Services",
+    title: "Generative AI and AI Agents with Amazon Bedrock",
+    link: "https://www.coursera.org/account/accomplishments/specialization/RM5YZYIOLK2I",
   },
   {
-    category: "Cloud & Frameworks",
-    items: ["Azure Fundamentals", "Vertex AI", "Flask", "FastAPI", "Streamlit"],
+    issuer: "Amazon Web Services",
+    title: "Amazon Bedrock Customization, Optimization & Automation",
+    link: "https://www.coursera.org/account/accomplishments/records/H5VYG4JZ9HY7",
   },
   {
-    category: "Databases",
-    items: ["MySQL", "SQL", "Vector Databases"],
+    issuer: "IBM",
+    title: "RAG and Agentic AI",
+    link: "https://www.coursera.org/account/accomplishments/specialization/9QL9XEMFXXUG",
+  },
+  {
+    issuer: "IBM",
+    title: "Advanced RAG with Vector Databases and Retrievers",
+    link: "https://www.coursera.org/account/accomplishments/records/WWEL7JSTEFCV",
+  },
+  {
+    issuer: "IBM",
+    title: "Vector Databases for RAG: An Introduction",
+    link: "https://www.coursera.org/account/accomplishments/verify/VBB3UX5AEEJS",
+  },
+  {
+    issuer: "IBM",
+    title: "Build RAG Applications: Get Started",
+    link: "https://www.coursera.org/account/accomplishments/verify/7B94YXCXTNPP",
+  },
+  {
+    issuer: "IBM",
+    title: "Develop Generative AI Applications",
+    link: "https://www.coursera.org/account/accomplishments/verify/PWKKUZ1CPM2F",
+  },
+  {
+    issuer: "IBM",
+    title: "Generative AI: Introduction and Applications",
+    link: "https://www.coursera.org/account/accomplishments/records/6UPUIEV7B8LD",
+  },
+  {
+    issuer: "IBM",
+    title: "Generative AI: Prompt Engineering Basics",
+    link: "https://www.coursera.org/account/accomplishments/records/DUOWDM6LSSW7",
+  },
+  {
+    issuer: "IBM",
+    title: "Python for Data Science, AI & Development",
+    link: "https://www.coursera.org/account/accomplishments/records/BZYQMN50R7UE",
+  },
+  {
+    issuer: "IBM",
+    title: "Introduction to Software Engineering",
+    link: "https://www.coursera.org/account/accomplishments/records/VD7AFUTGOIKC",
+  },
+  {
+    issuer: "Anthropic",
+    title: "AI Fluency: Framework & Foundations",
+    link: "http://verify.skilljar.com/c/5pwj2y2xs3io",
+  },
+  {
+    issuer: "WorldQuant University",
+    title: "Applied AI Lab: Deep Learning for Computer Vision",
+    link: "https://www.coursera.org/account/accomplishments/records/5299bf4c-6ed2-4169-8672-5c78c8abf6ad",
+  },
+  {
+    issuer: "freeCodeCamp",
+    title: "Machine Learning with Python",
+    link: "https://www.freecodecamp.org/certification/ajoantony/machine-learning-with-python-v7",
+  },
+  {
+    issuer: "Project Management Institute",
+    title: "Fundamentals of Agile Project Management",
+    link: "",
+  },
+  {
+    issuer: "Coursera",
+    title: "Generative AI Essentials",
+    link: "https://www.credly.com/badges/1314ec3c-9789-4bee-ba51-7acdcc2fc8b6/linked_in_profile",
+  },
+  {
+    issuer: "Coursera",
+    title: "Artificial Intelligence Essentials V2",
+    link: "https://www.credly.com/badges/b93801aa-255a-4cec-b65d-7a358083982a/linked_in_profile",
+  },
+  {
+    issuer: "Coursera",
+    title: "Azure Synapse SQL Pool - Implement Polybase",
+    link: "https://www.coursera.org/account/accomplishments/records/MBJJZA36LRPI",
+  },
+  {
+    issuer: "Coursera",
+    title: "Azure: Create a REST API using NodeJS Serverless Functions",
+    link: "https://www.coursera.org/account/accomplishments/records/ZQCN0R2UWH8K",
+  },
+  {
+    issuer: "University of London",
+    title: "Cyber Security Fundamentals",
+    link: "https://www.coursera.org/account/accomplishments/records/C6YVFMZH8W9K",
+  },
+  {
+    issuer: "Udemy",
+    title: "Learn Ethical Hacking From Scratch",
+    link: "https://www.udemy.com/certificate/UC-82608921-1252-4e9f-a3b4-Ocdcc2d4c89c",
+  },
+  {
+    issuer: "Infosys Springboard",
+    title: "OpenAI GPT-3 for Developers",
+    link: "",
+  },
+  {
+    issuer: "Government of India",
+    title: "Technology Management Development Programme",
+    link: "",
   },
 ];
 

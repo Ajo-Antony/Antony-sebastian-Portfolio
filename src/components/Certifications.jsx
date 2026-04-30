@@ -7,8 +7,13 @@ const issuerColors = {
   'Anthropic': '#c96442',
   'WorldQuant University': '#6ee7b7',
   'freeCodeCamp': '#0A0A23',
-  'PMI': '#2C6FAC',
+  'Project Management Institute': '#2C6FAC',
   'Google': '#4285F4',
+  'Coursera': '#0056D2',
+  'University of London': '#8B0000',
+  'Udemy': '#A435F0',
+  'Infosys Springboard': '#007CC3',
+  'Government of India': '#FF9933',
 };
 
 function CertCard({ cert, index }) {
