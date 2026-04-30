@@ -59,6 +59,17 @@ export const experience = [
 // PROJECTS — Add new projects here
 // ============================================================
 export const projects = [
+{
+    id: 6,
+    title: "MediLink",
+    subtitle: "Smart Pharmacy Network & E-Pharmacy Platform",
+    tags: ["Python", "Flask", "SQLAlchemy", "MySQL", "Bootstrap", "JavaScript", "REST API"],
+    description:
+      "Full-stack pharmacy management system connecting customers with verified pharmacies. Features medicine search across pharmacies, voice-activated ordering, prescription upload with OCR processing, inventory management, and order tracking with real-time status updates.",
+    github: "",
+    live: "",
+    featured: true,
+  },
   {
     id: 1,
     title: "CareGuides",
